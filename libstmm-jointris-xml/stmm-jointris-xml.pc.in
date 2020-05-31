@@ -1,0 +1,17 @@
+# stmm-jointris-xml pkg-config source file
+
+prefix=@STMMI_INSTALL_PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: stmm-jointris-xml
+Description: C++ games library - jointris events xml parsers
+Version: @STMM_JOINTRIS_XML_VERSION@
+URL: http://www.efanomars.com/games/jointris
+# Beware! The space between the library name and the comparison (>=) is necessary!
+Requires: stmm-jointris >= @STMM_JOINTRIS_XML_REQ_STMM_JOINTRIS_VERSION@  stmm-games-xml-game >= @STMM_JOINTRIS_XML_REQ_STMM_GAMES_XML_GAME_VERSION@
+Conflicts:
+Libs: -L${libdir} -lstmm-jointris-xml
+Cflags: -I${includedir}/stmm-jointris-xml -I${includedir}
+

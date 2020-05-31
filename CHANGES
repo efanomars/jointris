@@ -1,0 +1,182 @@
+jointris (0.23) unstable; urgency=low
+
+  * Adapt to stmm-games API changes
+  * Fix doxy comments
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Mon, 01 Jun 2020 19:29:39 +0100
+
+jointris (0.22) unstable; urgency=low
+
+  * Add freezed sound to games
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Mon, 11 May 2020 19:29:39 +0100
+
+jointris (0.21) unstable; urgency=low
+
+  * Adapt to stmm-games API changes
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Thu, 30 Apr 2020 19:29:39 +0100
+
+jointris (0.20) unstable; urgency=low
+
+  * Website section
+  * Qualify .desktop file
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Sat, 25 Apr 2020 19:29:39 +0100
+
+jointris (0.19) unstable; urgency=low
+
+  * Add canDrop to BlockEvent
+  * Fix cmake add_custom_target bug
+  * Add pylint3 to checkcode test
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Fri, 10 Apr 2020 19:29:39 +0100
+
+jointris (0.18) unstable; urgency=low
+
+  * stmm-input API changes recompilation
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Mon, 09 Mar 2020 19:29:39 +0100
+
+jointris (0.17) unstable; urgency=low
+
+  * Specify plugin groups to load
+  * Use new authors api
+  * Add sounds to xml games
+  * Add --no-sound option
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Mon, 02 Mar 2020 19:29:39 +0100
+
+jointris (0.16) unstable; urgency=low
+
+  * Improve theme.xml
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Mon, 02 Dec 2019 19:29:39 +0100
+
+jointris (0.15) unstable; urgency=low
+
+  * Points increase with level
+  * Use new ArrayEvent from stmm-games library
+  * Add watch file to deb packaging
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Sat, 16 Nov 2019 19:29:39 +0100
+
+jointris (0.14) unstable; urgency=low
+
+  * Apply iwyu
+  * Adapt build script to tarball deployment
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Thu, 24 Oct 2019 19:29:39 +0100
+
+jointris (0.13) unstable; urgency=low
+
+  * Improve build scripts
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Fri, 13 Sep 2019 19:29:39 +0100
+
+jointris (0.12) unstable; urgency=low
+
+  * Upgrade to new stmm-games version
+  * Fix xml games and use new APIs
+  * Simplify license
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Mon, 02 Sep 2019 19:29:39 +0100
+
+jointris (0.11) unstable; urgency=low
+
+  * Upgrade to new stmm-games version
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Fri, 16 Aug 2019 19:29:39 +0100
+
+jointris (0.10) unstable; urgency=low
+
+  * Reduce code bloat by adding noexpect to methods
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Thu, 04 Jul 2019 19:29:39 +0100
+
+jointris (0.9) unstable; urgency=low
+
+  * RowPusherEvent uses NewRows class
+  * Add theme loading to tests
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Sun, 02 Jun 2019 19:29:39 +0100
+
+jointris (0.8) unstable; urgency=low
+
+  * Improve FeederEvent (RandomEvent)
+  * Add permutis.xml game (inspired by pentris)
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Mon, 08 Apr 2019 19:29:39 +0100
+
+jointris (0.7) unstable; urgency=low
+
+  * Adapt to stmm-games API changes
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Tue, 02 Apr 2019 19:29:39 +0100
+
+jointris (0.6) unstable; urgency=low
+
+  * Add man page to source build
+  * RowPusherEvent: improve API, push identical rows
+  * Add ClassicVsJunk game using ProgressWidget
+  * Improve build scripts
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Mon, 25 Mar 2019 19:29:39 +0100
+
+jointris (0.5) unstable; urgency=low
+
+  * Add test for loading xml games (one and two team)
+  * Add arch PKGBUILD
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Wed, 13 Mar 2019 19:29:39 +0100
+
+jointris (0.4) unstable; urgency=low
+
+  * Add placingMillisec attribute to BlockEvent
+  * Use placingMillisec in Classic2.xml game.
+  * RowPusherEvent: use ProbTileGen for multiple randoms.
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Wed, 06 Mar 2019 19:29:39 +0100
+
+jointris (0.3) unstable; urgency=low
+
+  * Adapt API to libstmm-games-xml changes
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Sun, 21 Feb 2019 19:29:39 +0100
+
+jointris (0.2) unstable; urgency=low
+
+  * Jason Turner, C++ Weekly Ep.154, eliminate empty destructors
+  * Add virtual destructor to interfaces
+  * Improve deb package creation script
+  * Adapt API to libstmm-games changes
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Tue, 12 Feb 2019 19:29:39 +0100
+
+jointris (0.1) unstable; urgency=low
+
+  * Initial release
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Thu, 24 Jan 2019 14:24:34 +0100

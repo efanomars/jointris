@@ -1,0 +1,103 @@
+Source: jointris
+Priority: optional
+Maintainer: Stefano Marsili <efanomars@gmx.ch>
+Build-Depends: debhelper (>= 9)
+             , cmake
+             , python3
+             , doxygen
+             , graphviz
+             , libstmm-games-dev (>= @STMM_JOINTRIS_REQ_STMM_GAMES_VERSION@)
+             , libstmm-games-xml-game-dev (>= @STMM_JOINTRIS_XML_REQ_STMM_GAMES_XML_GAME_VERSION@)
+             , libstmm-games-xml-gtk-dev (>= @JOINTRIS_REQ_STMM_GAMES_XML_GTK_VERSION@)
+             , libstmm-input-gtk-dm-dev (>= @JOINTRIS_REQ_STMM_INPUT_GTK_DM_VERSION@)
+Standards-Version: 3.9.8
+Section: libs
+Homepage: @STMMI_WEBSITE_SECTION@/jointris
+Vcs-Git: https://www.gitlab.com/efanomars/jointris.git
+#Vcs-Browser: https://www.gitlab.com/efanomars/jointris/jointris.git
+
+
+#---------------------------------------------------------------------
+Package: libstmm-jointris@STMM_JOINTRIS_MAJOR_VERSION@
+Architecture: any
+Depends: libstmm-games@STMM_JOINTRIS_REQ_STMM_GAMES_MAJOR_VERSION@ (>= @STMM_JOINTRIS_REQ_STMM_GAMES_VERSION@)
+       , ${shlibs:Depends}, ${misc:Depends}
+Recommends: jointris
+Description: Joinable tetris blocks with bombs - model
+ Tetris like game with multiple joinable blocks.
+ .
+ This C++ library provides the game's model events needed by the
+ jointris executable.
+
+Package: libstmm-jointris-dev
+Section: libdevel
+Architecture: any
+Depends: libstmm-jointris@STMM_JOINTRIS_MAJOR_VERSION@ (= ${binary:Version})
+       , libstmm-games-dev (>= @STMM_JOINTRIS_REQ_STMM_GAMES_VERSION@)
+       , ${misc:Depends}
+Recommends: jointris
+Description: Joinable tetris blocks with bombs - model (develop)
+ Tetris like game with multiple joinable blocks.
+ .
+ This library provides the game's model events needed by the
+ jointris executable.
+ .
+ This package contains the development headers for the library found in
+ libstmm-jointris@STMM_JOINTRIS_MAJOR_VERSION@.
+ .
+ The minimum requirement is a C++14 compiler.
+
+
+#---------------------------------------------------------------------
+Package: libstmm-jointris-xml@STMM_JOINTRIS_XML_MAJOR_VERSION@
+Architecture: any
+Depends: libstmm-jointris@STMM_JOINTRIS_MAJOR_VERSION@ (>= @STMM_JOINTRIS_XML_REQ_STMM_JOINTRIS_VERSION@)
+       , libstmm-games-xml-game@STMM_JOINTRIS_XML_REQ_STMM_GAMES_XML_GAME_MAJOR_VERSION@ (>= @STMM_JOINTRIS_XML_REQ_STMM_GAMES_XML_GAME_VERSION@)
+       , ${shlibs:Depends}, ${misc:Depends}
+Recommends: jointris
+Description: Joinable tetris blocks with bombs - xml definitions
+ Tetris like game with multiple joinable blocks.
+ .
+ This C++ library provides the xml definitions of events defined in
+ libstmm-jointris@STMM_JOINTRIS_MAJOR_VERSION@.
+ .
+ This package is needed by the jointris executable.
+
+Package: libstmm-jointris-xml-dev
+Section: libdevel
+Architecture: any
+Depends: libstmm-jointris-xml@STMM_JOINTRIS_XML_MAJOR_VERSION@ (= ${binary:Version})
+       , libstmm-jointris-dev (>= @STMM_JOINTRIS_XML_REQ_STMM_JOINTRIS_VERSION@)
+       , libstmm-games-xml-game-dev (>= @STMM_JOINTRIS_XML_REQ_STMM_GAMES_XML_GAME_VERSION@)
+       , ${misc:Depends}
+Recommends: jointris
+Description: Joinable tetris blocks with bombs - xml definitions (develop)
+ Tetris like game with multiple joinable blocks.
+ .
+ This library provides the xml definitions of events defined in
+ libstmm-jointris@STMM_JOINTRIS_MAJOR_VERSION@.
+ .
+ This package contains the development headers for the library found in
+ libstmm-jointris-xml@STMM_JOINTRIS_XML_MAJOR_VERSION@.
+ .
+ The minimum requirement is a C++14 compiler.
+
+
+#---------------------------------------------------------------------
+Package: jointris
+Architecture: any
+Depends: libstmm-jointris-xml@STMM_JOINTRIS_XML_MAJOR_VERSION@ (>= @JOINTRIS_REQ_STMM_JOINTRIS_XML_VERSION@)
+       , libstmm-games-xml-gtk@JOINTRIS_REQ_STMM_GAMES_XML_GTK_MAJOR_VERSION@ (>= @JOINTRIS_REQ_STMM_GAMES_XML_GTK_VERSION@)
+       , libstmm-input-gtk-dm@JOINTRIS_REQ_STMM_INPUT_GTK_DM_MAJOR_VERSION@ (>= @JOINTRIS_REQ_STMM_INPUT_GTK_DM_VERSION@)
+       , ${shlibs:Depends}, ${misc:Depends}
+Suggests: libstmm-input-gtk-bt
+        , libstmm-input-gtk-xi
+Description: Joinable tetris blocks with bombs
+ Tetris like game with multiple joinable blocks.
+ .
+ Features:
+   - multiple blocks that can be joined together
+   - multiple players collaborating or competing
+   - custom shaped blocks and weird rotations
+   - exploding bombs
+

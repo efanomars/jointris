@@ -1,0 +1,101 @@
+<?xml version="1.0" ?>
+<!--
+ * Copyright © 2019-2020  Stefano Marsili, <stemars@gmx.ch>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program; if not, see <http://www.gnu.org/licenses/>
+-->
+<Theme _ign_version="1" internalName="Simple-J">
+	<Description>Simple - Jointris game theme</Description>
+	<Supports>jointris</Supports>
+	<!--Supports>swapper</Supports-->
+	<Extends>Simple</Extends>
+	<!--Images>
+		<Image imgId="bomb" imgFile="bomb.svg"/>
+	</Images-->
+	<Sounds>
+		<Sound sndId="Freezed" sndFile="freezed.mp3"/>
+		<Sound sndId="Fused" sndFile="fused.mp3"/>
+		<Sound sndId="Pushed" sndFile="bonc.mp3"/>
+		<Sound sndId="L00" sndFile="n00.mp3"/>
+		<Sound sndId="L01" sndFile="toc.mp3"/>
+		<Sound sndId="L02" sndFile="tac.mp3"/>
+		<Sound sndId="L03" sndFile="tic.mp3"/>
+		<Sound sndId="L04" sndFile="hat.mp3"/>
+		<Sound sndId="L05" sndFile="n05.mp3"/>
+		<Sound sndId="L06" sndFile="n06.mp3"/>
+		<Sound sndId="L07" sndFile="n07.mp3"/>
+		<Sound sndId="L08" sndFile="n08.mp3"/>
+		<Sound sndId="L09" sndFile="n09.mp3"/>
+		<Sound sndId="L10" sndFile="n10.mp3"/>
+		<Sound sndId="L11" sndFile="n11.mp3"/>
+		<Sound sndId="L12" sndFile="n12.mp3"/>
+		<Sound sndId="L13" sndFile="n13.mp3"/>
+		<Sound sndId="L14" sndFile="n14.mp3"/>
+		<Sound sndId="L15" sndFile="n15.mp3"/>
+		<Sound sndId="L16" sndFile="n16.mp3"/>
+		<Sound sndId="L17" sndFile="n17.mp3"/>
+		<Sound sndId="L18" sndFile="n18.mp3"/>
+		<Sound sndId="L19" sndFile="n19.mp3"/>
+		<Sound sndId="L20" sndFile="n20.mp3"/>
+		<Sound sndId="L21" sndFile="n21.mp3"/>
+		<Sound sndId="L22" sndFile="n22.mp3"/>
+		<Sound sndId="L23" sndFile="n23.mp3"/>
+		<Sound sndId="L24" sndFile="n24.mp3"/>
+		<Sound sndId="L25" sndFile="n25.mp3"/>
+		<Sound sndId="L26" sndFile="n26.mp3"/>
+		<Sound sndId="L27" sndFile="n27.mp3"/>
+		<Sound sndId="L28" sndFile="n28.mp3"/>
+		<Sound sndId="L29" sndFile="n29.mp3"/>
+		<Sound sndId="L30" sndFile="n30.mp3"/>
+	</Sounds>
+	<WidgetFactories>
+		<LevelShowFactory name="Jointris:FrameLined">
+			<Frame left="1" right="1" bottom="1">
+				<LeftImg imgFile="framelinev.svg"/>
+				<RightImg imgFile="framelinev.svg"/>
+				<BottomImg imgFile="framelineh.svg"/>
+			</Frame>
+		</LevelShowFactory>
+	</WidgetFactories>
+	<DrawTile>
+		<!--Next/-->
+		<Conditional>
+			<If><Char charName="BOMB"/></If>
+				<Mask aniId="Cracks" aniName="TILEANI:REMOVING"     _ign_aniFactor="10%" _ign_invert="true">
+					<Mask imgFile="squaremask.svg">
+						<Alpha>
+							<Fill/>
+						</Alpha>
+						<!--Rotate aniName="TILEANI:BOMB"-->
+						<Image imgFile="bomb.svg"/>
+						<!--/Rotate-->
+					</Mask>
+				</Mask>
+			<Else/>
+				<Rotate aniName="TILEANI:REMOVING"      _ign_invert="true" _ign_aniFactor="2%">
+							<!--Rotate aniName="TILEANI:BOMB"-->
+					<Mask imgFile="squaremask.svg">
+						<Alpha>
+							<Fill/>
+							<Text sizeFactor="100%"/>
+						</Alpha>
+					</Mask>
+							<!--/Rotate-->
+				</Rotate>
+		</Conditional>
+		<SelectCase idAss="squareP">
+			<SelectedImage/>
+		</SelectCase>
+	</DrawTile>
+</Theme>

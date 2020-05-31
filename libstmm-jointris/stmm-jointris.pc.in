@@ -1,0 +1,17 @@
+# stmm-jointris pkg-config source file
+
+prefix=@STMMI_INSTALL_PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: stmm-jointris
+Description: C++ games library - jointris events
+Version: @STMM_JOINTRIS_VERSION@
+URL: http://www.efanomars.com/games/jointris
+# Beware! The space between the library name and the comparison (>=) is necessary!
+Requires: stmm-games >= @STMM_JOINTRIS_REQ_STMM_GAMES_VERSION@
+Conflicts:
+Libs: -L${libdir} -lstmm-jointris
+Cflags: -I${includedir}/stmm-jointris -I${includedir}
+

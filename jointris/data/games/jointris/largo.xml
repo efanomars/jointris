@@ -1,0 +1,793 @@
+<?xml version="1.0" ?>
+<!--
+ * Copyright © 2019-2020  Stefano Marsili, <stemars@gmx.ch>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program; if not, see <http://www.gnu.org/licenses/>
+-->
+<Game _ign_version="1" internalName="Largo" difficulty="250">
+	<Description>20x20 tiles big with one or two 10x10 views</Description>
+	<Description>Level is increased each 4 lines</Description>
+	<Author name="Stefano Marsili"  email="stemars@gmx.ch" website="https://efanomars.com"/>
+	<Constraints teamsPerLevel="1" levelsMin="1" levelsMax="1" teamsMin="1" teamsMax="1" matesPerTeamMax="2"/>
+	<Variables>
+		<Var name="Points" owner="TEAM" initial="0"/>
+		<Var name="Lines" owner="TEAM" initial="0"/>
+		<Var name="Level" owner="TEAM" initial="1"/>
+
+		<Var name="BlockDuration0" owner="GAME" initial="0" addTime="true" timeBase="MILLISEC"/>
+		<Var name="BlockDuration1" owner="GAME" initial="0" addTime="true" timeBase="MILLISEC"/>
+	</Variables>
+	<HighscoresDefinition maxScores="20">
+		<!--Constraint type="HUMAN_TEAM_MATES" max="1"/-->
+		<Element description="Points"  varName="Points"/>
+		<Element description="Lines"  varName="Lines"/>
+		<Discriminator type="HUMAN_TEAM_MATES"/>
+		<Eligibility varName="Lines" min="1"/>
+	</HighscoresDefinition>
+	<Level>
+		<Board width="20" height="20">
+			<!--Rect x="0" y="0" w="1" h="10" colorPal="2" alpha="240"/>
+			<Rect x="9" y="0" w="1" h="10" colorPal="3" alpha="200"/>
+			<Rect x="6" y="6" w="1" h="1" colorPal="4"/-->
+		</Board>
+		<Subshow width="10" height="10"/>
+	</Level>
+	<Blocks>
+		<_Ign_Block internalName="Threei">
+			<Description>Test shape</Description>
+			<Bricks>
+				<DefaultTile colorPal="2"/>
+				<Tile idChar="B" colorPal="3" charName="BOMB"/>
+			</Bricks>
+			<Shapes seqs="2" emptyId=" " wh="3">
+				<Shape>
+					<Line>ABC</Line>
+				</Shape>
+				<Shape hiddenTo="B">
+					<Line> A </Line>
+					<Line> B </Line>
+					<Line> C </Line>
+				</Shape>
+			</Shapes>
+		</_Ign_Block>
+		<Block internalName="Classic:2">
+			<Description>Classic 2 shape (swiggely)</Description>
+			<Bricks>
+				<DefaultTile colorPal="2"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line> A </Line>
+					<Line>CB </Line>
+					<Line>D  </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<Block internalName="Classic:5">
+			<Description>Classic 5 shape (reverse swiggely)</Description>
+			<Bricks>
+				<DefaultTile colorPal="3"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line> A </Line>
+					<Line> BC</Line>
+					<Line>  D </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<Block internalName="Classic:I">
+			<Description>Classic I shape (line)</Description>
+			<Bricks>
+				<DefaultTile colorPal="4"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="4">
+				<Shape>
+					<Line> A  </Line>
+					<Line> B  </Line>
+					<Line> C  </Line>
+					<Line> D  </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<Block internalName="Classic:J">
+			<Description>Classic J shape (reverse L)</Description>
+			<Bricks>
+				<DefaultTile colorPal="5"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line> A </Line>
+					<Line> B </Line>
+					<Line>DC </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<Block internalName="Classic:L">
+			<Description>Classic L shape</Description>
+			<Bricks>
+				<DefaultTile colorPal="6"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line> A </Line>
+					<Line> B </Line>
+					<Line> CD</Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<Block internalName="Classic:O">
+			<Description>Classic O shape (square)</Description>
+			<Bricks>
+				<DefaultTile colorPal="7"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="2">
+				<Shape>
+					<Line>AC</Line>
+					<Line>BD</Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<Block internalName="Classic:T">
+			<Description>Classic T shape</Description>
+			<Bricks>
+				<DefaultTile colorPal="8"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line> A </Line>
+					<Line>CBD</Line>
+					<Line>   </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+	</Blocks>
+	<Layout>
+		<BackgroundWidget image="Background1" alignHoriz="FILL" alignVert="FILL" expandHoriz="true" expandVert="true">
+			<BoxWidget vertical_0="true" vertical_1="false">
+				<BoxWidget vertical_0="false" vertical_1="true">
+					<BoxWidget vertical_0="true" vertical_1="false" team="0" mate="0">
+						<LevelShowWidget team="0" mate="0" name="Main" interactive="false">
+						</LevelShowWidget>
+						<PreviewWidget name="ThePreview0" team="0" mate="0" minTilesW="4" minTilesH="4" refWFactor="30%" refHFactor="0.3">
+							<ExistIf>
+								<Option name="Feeder::Preview" ownerType="GAME" value="true"/>
+							</ExistIf>
+						</PreviewWidget>
+					</BoxWidget>
+					<TransparentWidget refWFactor="0.1" refHFactor="0.05" alignVert_0="FILL" expandVert_0="true" alignHoriz_1="FILL" expandHoriz_1="true">
+						<ExistIf>
+							<Mates team="0" from="2"/>
+						</ExistIf>
+					</TransparentWidget>
+					<BoxWidget vertical_0="true" vertical_1="false" team="0" mate="1">
+						<LevelShowWidget team="0" mate="1" name="Main" interactive="false">
+						</LevelShowWidget>
+						<PreviewWidget name="ThePreview1" team="0" mate="1" minTilesW="4" minTilesH="4" refWFactor="30%" refHFactor="0.3">
+							<ExistIf>
+								<Option name="Feeder::Preview" ownerType="GAME" value="true"/>
+							</ExistIf>
+						</PreviewWidget>
+					</BoxWidget>
+				</BoxWidget>
+				<BoxWidget vertical_0="false" vertical_1="true">
+					<VarWidget title="Points" team="0" mate="" variable="Points" refWFactor="40%" refHFactor="20%" valueDigits="7"/>
+					<VarWidget title="Lines" team="0" mate="" variable="Lines" refWFactor="30%" refHFactor="20%" valueDigits="4"/>
+					<VarWidget title="Level" team="0" mate="" variable="Level" refWFactor="30%" refHFactor="20%" valueDigits="2"/>
+				</BoxWidget>
+			</BoxWidget>
+		</BackgroundWidget>
+	</Layout>
+	<Events>
+		<BackgroundEvent evId="EVID-BG" start="10" posZ="-1100">
+			<Image imgId="Background6" width="5" height="5"  relPosX="2" relPosY="3"/>
+			<Image imgId="Background7" width="5" height="5"  relPosX="2" relPosY="3"/>
+			<Image imgId="Background8" width="5" height="5"  relPosX="2" relPosY="3"/>
+			<Image imgId="Background2" width="5" height="4"  relPosX="2" relPosY="3"/>
+			<Image imgId="Background3" width="5" height="4"  relPosX="2" relPosY="3"/>
+			<Image imgId="Background4" width="4" height="5"  relPosX="2" relPosY="3"/>
+			<Image imgId="Background5" width="5" height="5"  relPosX="2" relPosY="3"/>
+		</BackgroundEvent>
+
+		<StaticGridEvent evId="EVID-SG-L" start="0" gridX="0.2" gridY="0" gridW="1" gridH="20" gridCellsW="1" gridCellsH="20" posZ="-300">
+			<Image imgId="Gradient0" relPosX="0" relPosY="0" width="1" height="2" repeatX="1" repeatY="1"/>
+			<Image imgId="Gradient1" relPosX="0" relPosY="2" width="1" height="2" repeatX="1" repeatY="1"/>
+			<Image imgId="Gradient2" relPosX="0" relPosY="4" width="1" height="2" repeatX="1" repeatY="1"/>
+			<Image imgId="Gradient3" relPosX="0" relPosY="6" width="1" height="1" repeatX="1" repeatY="8"/>
+			<Image imgId="Gradient5" relPosX="0" relPosY="14" width="1" height="2" repeatX="1" repeatY="1"/>
+			<Image imgId="Gradient6" relPosX="0" relPosY="16" width="1" height="2" repeatX="1" repeatY="1"/>
+			<Image imgId="Gradient7" relPosX="0" relPosY="18" width="1" height="2" repeatX="1" repeatY="1"/>
+		</StaticGridEvent>
+		<StaticGridEvent evId="EVID-SG-ML" start="0" gridX="9.5" gridY="0" gridW="1" gridH="20" gridCellsW="1" gridCellsH="20" posZ="-300">
+			<Image imgId="Gradient0" relPosX="0" relPosY="0" width="1" height="2" repeatX="1" repeatY="1"/>
+			<Image imgId="Gradient1" relPosX="0" relPosY="2" width="1" height="2" repeatX="1" repeatY="1"/>
+			<Image imgId="Gradient2" relPosX="0" relPosY="4" width="1" height="2" repeatX="1" repeatY="1"/>
+			<Image imgId="Gradient3" relPosX="0" relPosY="6" width="1" height="1" repeatX="1" repeatY="8"/>
+			<Image imgId="Gradient5" relPosX="0" relPosY="14" width="1" height="2" repeatX="1" repeatY="1"/>
+			<Image imgId="Gradient6" relPosX="0" relPosY="16" width="1" height="2" repeatX="1" repeatY="1"/>
+			<Image imgId="Gradient7" relPosX="0" relPosY="18" width="1" height="2" repeatX="1" repeatY="1"/>
+		</StaticGridEvent>
+		<StaticGridEvent evId="EVID-SG-MR" start="0" gridX="18.8" gridY="0" gridW="1" gridH="20" gridCellsW="1" gridCellsH="20" posZ="-300">
+			<Image imgId="Gradient0" relPosX="0" relPosY="0" width="1" height="2" repeatX="1" repeatY="1"/>
+			<Image imgId="Gradient1" relPosX="0" relPosY="2" width="1" height="2" repeatX="1" repeatY="1"/>
+			<Image imgId="Gradient2" relPosX="0" relPosY="4" width="1" height="2" repeatX="1" repeatY="1"/>
+			<Image imgId="Gradient3" relPosX="0" relPosY="6" width="1" height="1" repeatX="1" repeatY="8"/>
+			<Image imgId="Gradient5" relPosX="0" relPosY="14" width="1" height="2" repeatX="1" repeatY="1"/>
+			<Image imgId="Gradient6" relPosX="0" relPosY="16" width="1" height="2" repeatX="1" repeatY="1"/>
+			<Image imgId="Gradient7" relPosX="0" relPosY="18" width="1" height="2" repeatX="1" repeatY="1"/>
+		</StaticGridEvent>
+
+		<SpeedEvent evId="EVID-SPEED" start="0">
+			<Change repeat="1" _ign_level="1">
+				<Set interval="50" fallEachTicks="16"/>
+			</Change>
+			<Change repeat="10" _ign_level="2-11">
+				<Inc fallEachTicks="-1"/>
+			</Change>
+			<Change repeat="1" _ign_level="12">
+				<Set interval="45" fallEachTicks="6"/>
+			</Change>
+			<Change repeat="1" _ign_level="13">
+				<Set interval="45" fallEachTicks="5"/>
+			</Change>
+			<Change repeat="1" _ign_level="14">
+				<Set interval="40" fallEachTicks="5"/>
+			</Change>
+			<Change repeat="1" _ign_level="15">
+				<Set interval="40" fallEachTicks="4"/>
+			</Change>
+			<Change repeat="1" _ign_level="16">
+				<Set interval="35" fallEachTicks="4"/>
+			</Change>
+			<Change repeat="1" _ign_level="17">
+				<Set interval="35" fallEachTicks="3"/>
+			</Change>
+			<Change repeat="1" _ign_level="18">
+				<Set interval="30" fallEachTicks="3"/>
+			</Change>
+			<Change repeat="1" _ign_level="19">
+				<Set interval="30" fallEachTicks="2"/>
+			</Change>
+			<Change repeat="1" _ign_level="20">
+				<Set interval="30" fallEachTicks="1"/>
+			</Change>
+			<Change _ign_level="21-...">
+				<Inc interval="-4"/>
+			</Change>
+			<!--Listener groupName="CHANGED" event="EVID-ST-Faster" msg="0"/-->
+		</SpeedEvent>
+
+		<RowRemoverEvent evId="EVID-0a" start="0"  deleteAfter="8" deleteAdd="4">
+			<Listener groupName="REMOVED" event="EVID-CC-POINTS" msgName="CUMUL_SET_LEFT_COMPARE"/>
+			<Listener groupName="REMOVED" event="EVID-VAR-LINES" msgName="ADD_VALUE"/>
+			<_Ign_Listener group="0" event="EVID-0b" msg="0"/>
+			<Listener groupName="REMOVED" event="EVID-ARRAY-SOUND-NRS" msgName="ARRAY_GET">
+				<ExistIf>
+					<Option name="SoundEnabled" team="" value="true"/>
+				</ExistIf>
+			</Listener>
+		</RowRemoverEvent>
+		<_Ign_RowRemoverEvent evId="EVID-0b" repeat="1" gaps="1" deleteAfter="10" deleteAdd="3">
+			<Listener group="0" event="EVID-0a" msg="0"/>
+		</_Ign_RowRemoverEvent>
+
+		<ArrayEvent evId="EVID-ARRAY-SOUND-NRS" valueType="SOUND" _ign_DESC="removed lines to sound name index">
+			<ExistIf>
+				<Option name="SoundEnabled" team="" value="true"/>
+			</ExistIf>
+			<Filter>
+				<Input msgName="ARRAY_GET" toValue="0" _ign_newValue="suppressed"/>
+			</Filter>
+			<Dim size="21"/>
+			<Array els="L00,L01,L02,L03,L04,L05,L06,L07,L08,L09,L10,L11,L12,L13,L14,L15,L16,L17,L18,L19,L20"/>
+			<Listener groupName="ARRAY_RESULT" event="EVID-SND-NR"   msgName="PLAY_FREE_IDX"/>
+		</ArrayEvent>
+		<SoundEvent evId="EVID-SND-NR" listenerRealtive="true">
+			<ExistIf>
+				<Option name="SoundEnabled" team="" value="true"/>
+			</ExistIf>
+			<!--Listener groupName="SOUND_FINISHED"    event="EVID-SHOW-FINISHED" msg="0"/-->
+		</SoundEvent>
+
+		<VariableEvent evId="EVID-VAR-LEVEL" name="Level" team="0">
+			<Listener groupName="VAR_VALUE" event="EVID-CC-POINTS-CALC" msgName="CUMUL_MULT_LEFT"/>
+		</VariableEvent>
+
+		<CumulCmpEvent evId="EVID-CC-POINTS" _ign_DESC1="removed lines to points">
+			<Filter>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="1"  newValue="1000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="2"  newValue="3000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="3"  newValue="6000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="4"  newValue="15000"/>
+				<!--Input msgName="CUMUL_SET_LEFT_COMPARE" value="5"  newValue="15000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="6 " newValue="21000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="7"  newValue="28000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="8"  newValue="36000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="9"  newValue="45000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="10" newValue="55000"/-->
+			</Filter>
+			<Listener groupName="COMPARED" event="EVID-CC-POINTS-CALC" msgName="CUMUL_SET_LEFT"/>
+			<Listener groupName="COMPARED" event="EVID-VAR-LEVEL"      msgName="VAR_GET_VALUE"/>
+			<Listener groupName="COMPARED" event="EVID-CC-POINTS-CALC" msgName="CUMUL_ADD_TO_LEFT_COMPARE"/>
+		</CumulCmpEvent>
+
+		<CumulCmpEvent evId="EVID-CC-POINTS-CALC"  _ign_DESC1="= points + (points / 20) * (Level - 1)">
+			<Filter>
+				<Input msgName="CUMUL_SET_LEFT" valueDiv="20"/>
+				<Input msgName="CUMUL_MULT_LEFT" valueAdd="-1"/>
+			</Filter>
+			<Listener groupName="COMPARED" event="EVID-VAR-POINTS" msgName="ADD_VALUE"/>
+		</CumulCmpEvent>
+
+		<VariableEvent evId="EVID-VAR-POINTS" name="Points" team="0">
+			<!--Listener group="10" event="EVID-LOG-POINTS" msg="777"/-->
+		</VariableEvent>
+
+		<VariableEvent evId="EVID-VAR-LINES" name="Lines" team="0">
+			<Listener groupName="VAR_CHANGED" event="EVID-CC-LEVEL_CHANGE" msgName="CUMUL_SET_LEFT_COMPARE"/>
+		</VariableEvent>
+
+		<CumulCmpEvent evId="EVID-CC-LEVEL_CHANGE" onCompare="COPY_LEFT_TO_RIGHT" initialLeft="1" initialRight="1"
+						_ign_DESC1="number of lines to level map: removed lines 0-4 is level 1, 5-9 is level 2, etc.">
+			<Filter>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="0" _ign_newValue="suppressed"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" valueAdd="1" valueDiv="5"/>
+			</Filter>
+			<Listener groupName="COMPARED_NOT_EQUAL" event="EVID-SPEED" msg="0"/>
+			<Listener groupName="COMPARED_NOT_EQUAL" event="EVID-BG" msgName="IMG_NEXT"/>
+			<Listener groupName="COMPARED_NOT_EQUAL" event="EVID-VAR-LEVEL" msgName="INC"/>
+		</CumulCmpEvent>
+
+		<PositionerEvent start="5"  areaX="2" areaY="2" areaW="6" areaH="4"/>
+
+		<ShowTextEvent evId="EVID-ST-NJ0" duration="1000" refSys="SUBSHOW" mate="0">
+			<Line>NOT JOINED</Line>
+		</ShowTextEvent>
+		<ShowTextEvent evId="EVID-ST-J0" duration="800" refSys="SUBSHOW" mate="0">
+			<Line>joined</Line>
+		</ShowTextEvent>
+
+		<FeederEvent evId="EVID-F0" mate="0" start="5" wait="8">
+			<AttrIf preview="ThePreview0">
+				<Option name="Feeder::Preview" ownerType="GAME" value="true"/>
+			</AttrIf>
+			<_Ign_Bunch prob="100" joined="true">
+				<BlockEvent block="Threei" initPos="-2">
+					<AttrIf initPos="-10">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Threei" initPos="+3">
+					<AttrIf initPos="-5">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</_Ign_Bunch>
+			<Bunch prob="15" >
+				<BlockEvent block="Classic:L" initPos="0">
+					<AttrIf initPos="-4">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" >
+				<BlockEvent block="Classic:J" initPos="0">
+					<AttrIf initPos="-4">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" >
+				<BlockEvent block="Classic:I" initPos="0">
+					<AttrIf initPos="-4">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" >
+				<BlockEvent block="Classic:O" initPos="0">
+					<AttrIf initPos="-4">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" >
+				<BlockEvent block="Classic:T" initPos="0">
+					<AttrIf initPos="-4">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" >
+				<BlockEvent block="Classic:2" initPos="0">
+					<AttrIf initPos="-4">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" >
+				<BlockEvent block="Classic:5" initPos="0">
+					<AttrIf initPos="-4">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Listener groupName="CANNOT_PLACE_BLOCK" event="EVID-SYS-GameOver" msg="0"/>
+			<Listener groupName="BUNCH_JOINED" event="EVID-ST-J0" msg="0"/>
+			<Listener groupName="BUNCH_NOT_JOINED" event="EVID-ST-NJ0" msg="0"/>
+			<Listener groupName="BUNCH_DONE" event="EVID-VAR-BLCK-DURATION0" msgName="VAR_GET_VALUE"/>
+			<Listener groupName="BUNCH_JOINED" event="EVID-VAR-BLCK-DURATION0" msgName="VAR_GET_VALUE"/>
+			<Listener groupName="BUNCH_NOT_JOINED" event="EVID-VAR-BLCK-DURATION0" msgName="VAR_GET_VALUE"/>
+		</FeederEvent>
+
+		<VariableEvent evId="EVID-VAR-BLCK-DURATION0" name="BlockDuration0">
+			<Listener groupName="VAR_VALUE" event="EVID-VAR-BLCK-DURATION-TO-POINTS0" msgName="CUMUL_SET_LEFT_COMPARE"/>
+			<!--Listener groupName="VAR_VALUE" event="EVID-LOG-DURATION0" msg="8888"/-->
+		</VariableEvent>
+		<!--LogEvent evId="EVID-LOG-DURATION0" tag="888"/-->
+		<CumulCmpEvent evId="EVID-VAR-BLCK-DURATION-TO-POINTS0" onCompare="RESET_LEFT"
+						_ign_DESC="transform millisec it took to drop bunch to points (the faster the better)">
+			<Filter>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="1000" valuePercent="-50" valueAdd="2000" _ign_range="2000(0ms) to 1500(1000ms)"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="2000" valueMult="-1"     valueAdd="2500" _ign_range="1500(1001ms) to 500(2000ms)"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="6000" valueDiv="-8"      valueAdd="750"  _ign_range="500(2001ms) to 0(6000ms)"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" newValue="0"                                      _ign_range="0(6001ms) to ..."/>
+			</Filter>
+			<Listener groupName="COMPARED" event="EVID-VAR-POINTS" msgName="ADD_VALUE"/>
+			<!--Listener groupName="COMPARED" event="EVID-LOG-POINTS1" msg="9999"/-->
+		</CumulCmpEvent>
+		<!--LogEvent evId="EVID-LOG-POINTS1" tag="999"/-->
+
+
+		<ShowTextEvent evId="EVID-ST-NJ1" duration="1000" refSys="SUBSHOW" mate="1">
+			<Line>NOT JOINED</Line>
+		</ShowTextEvent>
+		<ShowTextEvent evId="EVID-ST-J1" duration="800" refSys="SUBSHOW" mate="1">
+			<Line>joined</Line>
+		</ShowTextEvent>
+
+		<FeederEvent evId="EVID-F1" mate="1" start="6" wait="8">
+			<!-- Start is at 6 so that mate 0 is assigned to EVID-F0 blocks and mate 1 to EVID-F1 blocks -->
+			<AttrIf preview="ThePreview1">
+				<Option name="Feeder::Preview" ownerType="GAME" value="true"/>
+			</AttrIf>
+			<_Ign_Bunch prob="100" joined="true">
+				<BlockEvent block="Threei" initPos="-2">
+					<AttrIf initPos="+5">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Threei" initPos="+3">
+					<AttrIf initPos="+10">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</_Ign_Bunch>
+			<Bunch prob="15" >
+				<BlockEvent block="Classic:L" initPos="0">
+					<AttrIf initPos="+4">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" >
+				<BlockEvent block="Classic:J" initPos="0">
+					<AttrIf initPos="+4">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" >
+				<BlockEvent block="Classic:I" initPos="0">
+					<AttrIf initPos="+4">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" >
+				<BlockEvent block="Classic:O" initPos="0">
+					<AttrIf initPos="+4">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" >
+				<BlockEvent block="Classic:T" initPos="0">
+					<AttrIf initPos="+4">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" >
+				<BlockEvent block="Classic:2" initPos="0">
+					<AttrIf initPos="+4">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" >
+				<BlockEvent block="Classic:5" initPos="0">
+					<AttrIf initPos="+4">
+						<Mates team="0" from="2"/>
+					</AttrIf>
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Listener groupName="CANNOT_PLACE_BLOCK" event="EVID-SYS-GameOver" msg="0"/>
+			<Listener groupName="BUNCH_JOINED" event="EVID-ST-J1" msg="0"/>
+			<Listener groupName="BUNCH_NOT_JOINED" event="EVID-ST-NJ1" msg="0"/>
+			<Listener groupName="BUNCH_DONE" event="EVID-VAR-BLCK-DURATION1" msgName="VAR_GET_VALUE"/>
+			<Listener groupName="BUNCH_JOINED" event="EVID-VAR-BLCK-DURATION1" msgName="VAR_GET_VALUE"/>
+			<Listener groupName="BUNCH_NOT_JOINED" event="EVID-VAR-BLCK-DURATION1" msgName="VAR_GET_VALUE"/>
+		</FeederEvent>
+
+		<VariableEvent evId="EVID-VAR-BLCK-DURATION1" name="BlockDuration1">
+			<Listener groupName="VAR_VALUE" event="EVID-VAR-BLCK-DURATION-TO-POINTS1" msgName="CUMUL_SET_LEFT_COMPARE"/>
+			<!--Listener groupName="VAR_VALUE" event="EVID-LOG-DURATION1" msg="8888"/-->
+		</VariableEvent>
+		<!--LogEvent evId="EVID-LOG-DURATION1" tag="888"/-->
+		<CumulCmpEvent evId="EVID-VAR-BLCK-DURATION-TO-POINTS1" onCompare="RESET_LEFT"
+						_ign_DESC="transform millisec it took to drop bunch to points (the faster the better)">
+			<Filter>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="1000" valuePercent="-50" valueAdd="2000" _ign_range="2000(0ms) to 1500(1000ms)"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="2000" valueMult="-1"     valueAdd="2500" _ign_range="1500(1001ms) to 500(2000ms)"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="6000" valueDiv="-8"      valueAdd="750"  _ign_range="500(2001ms) to 0(6000ms)"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" newValue="0"                                      _ign_range="0(6001ms) to ..."/>
+			</Filter>
+			<Listener groupName="COMPARED" event="EVID-VAR-POINTS" msgName="ADD_VALUE"/>
+			<!--Listener groupName="COMPARED" event="EVID-LOG-POINTS1" msg="9999"/-->
+		</CumulCmpEvent>
+		<!--LogEvent evId="EVID-LOG-POINTS1" tag="999"/-->
+
+		<SoundEvent evId="EVID-SND-FREEZED" name="Freezed" listenerRealtive="true">
+			<ExistIf>
+				<Option name="SoundEnabled" team="" value="true"/>
+			</ExistIf>
+		</SoundEvent>
+
+		<SoundEvent evId="EVID-SND-FUSED" name="Fused" listenerRealtive="true">
+			<ExistIf>
+				<Option name="SoundEnabled" team="" value="true"/>
+			</ExistIf>
+		</SoundEvent>
+
+		<SysEvent evId="EVID-SYS-GameOver" type="LEVEL_FAILED" createTexts="true">
+			<Listener groupName="TEAM_FINISHED" event="EVID-SND-GAME-OVER" msgName="PLAY_FREE">
+				<ExistIf>
+					<Option name="SoundEnabled" team="" value="true"/>
+				</ExistIf>
+			</Listener>
+		</SysEvent>
+		<SoundEvent evId="EVID-SND-GAME-OVER" name="GameOver" listenerRealtive="true">
+			<ExistIf>
+				<Option name="SoundEnabled" team="" value="true"/>
+			</ExistIf>
+		</SoundEvent>
+	</Events>
+</Game>

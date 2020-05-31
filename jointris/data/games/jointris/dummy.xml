@@ -1,0 +1,1227 @@
+<?xml version="1.0" ?>
+<!--
+ * Copyright © 2019-2020  Stefano Marsili, <stemars@gmx.ch>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program; if not, see <http://www.gnu.org/licenses/>
+-->
+<Game _ign_version="1" internalName="Dummy" difficulty="350">
+	<Description>Dummy - X tiled blocks are not controllable.</Description>
+	<Description>Join them to form new blocks.</Description>
+	<Author name="Stefano Marsili"  email="stemars@gmx.ch" website="https://efanomars.com"/>
+	<Constraints levels="1" teams="1" _ign_matesPerTeamMax="1"/>
+	<Variables>
+		<Var name="Points" owner="TEAM" initial="0"/>
+		<Var name="Lines" owner="TEAM" initial="0"/>
+		<Var name="Level" owner="TEAM" initial="1"/>
+
+		<Var name="BlockDuration" owner="GAME" initial="0" addTime="true" timeBase="MILLISEC"/>
+	</Variables>
+	<HighscoresDefinition maxScores="20">
+		<Element description="Points"  varName="Points"/>
+		<Element description="Lines"  varName="Lines"/>
+		<Eligibility varName="Lines" min="1"/>
+		<Discriminator type="HUMAN_TEAM_MATES"/>
+	</HighscoresDefinition>
+	<Level>
+		<Board width="14" height="24">
+		</Board>
+	</Level>
+	<Blocks>
+		<Block internalName="NotJoined">
+			<Description>NotJoined</Description>
+			<Bricks>
+				<DefaultTile colorPal="2"/>
+				<Tile idChar="n" colorPal="2" char="N"/>
+				<Tile idChar="t" colorPal="2" char="T"/>
+				<Tile idChar="J" colorPal="2" char="J"/>
+				<Tile idChar="O" colorPal="2" char="O"/>
+				<Tile idChar="I" colorPal="2" char="I"/>
+				<Tile idChar="N" colorPal="2" char="N"/>
+				<Tile idChar="E" colorPal="2" char="E"/>
+				<Tile idChar="D" colorPal="2" char="D"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="6">
+				<Shape>
+					<Line>      </Line>
+					<Line> n    </Line>
+					<Line>JOINED</Line>
+					<Line> t    </Line>
+					<Line>      </Line>
+					<Line>      </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<Block internalName="Penta:T">
+			<Description>Big T</Description>
+			<Bricks>
+				<DefaultTile colorPal="2" char="X"/>
+				<Tile idChar="E" colorPal="2" charName="BOMB"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line> A </Line>
+					<Line> B </Line>
+					<Line>CDE</Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<Block internalName="Penta:U">
+			<Description>U</Description>
+			<Bricks>
+				<DefaultTile colorPal="3"/>
+				<!--Tile idChar="E" colorPal="3" charName="BOMB"/-->
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line>D  </Line>
+					<Line>ABC</Line>
+					<Line>  E</Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<Block internalName="Penta:Cross">
+			<Description>Cross</Description>
+			<Bricks>
+				<DefaultTile colorPal="4" char="X"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line> A </Line>
+					<Line>BCD</Line>
+					<Line> E </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<!--Block internalName="Penta:S">
+			<Description>Big S</Description>
+			<Bricks>
+				<DefaultTile colorPal="5" char="X"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line> BA</Line>
+					<Line> C </Line>
+					<Line>ED </Line>
+				</Shape>
+			</Shapes>
+		</Block-->
+		<!--Block internalName="Penta:InvertedS">
+			<Description>Big Inverted S</Description>
+			<Bricks>
+				<DefaultTile colorPal="6" char="X"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line>AB </Line>
+					<Line> C </Line>
+					<Line> DE</Line>
+				</Shape>
+			</Shapes>
+		</Block-->
+		<Block internalName="Penta:Q">
+			<Description>Big Q</Description>
+			<Bricks>
+				<DefaultTile colorPal="7" char="X"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line>AB </Line>
+					<Line>CD </Line>
+					<Line> E </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<Block internalName="Penta:P">
+			<Description>Big P</Description>
+			<Bricks>
+				<DefaultTile colorPal="8" char="X"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line> AB</Line>
+					<Line> CD</Line>
+					<Line> E </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<Block internalName="Penta:L">
+			<Description>Big L</Description>
+			<Bricks>
+				<DefaultTile colorPal="9" char="X"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="4">
+				<Shape>
+					<Line> A  </Line>
+					<Line> B  </Line>
+					<Line> C  </Line>
+					<Line> DE </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<Block internalName="Penta:InvertedL">
+			<Description>Big Inverted L</Description>
+			<Bricks>
+				<DefaultTile colorPal="10" char="X"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="4">
+				<Shape>
+					<Line>  A </Line>
+					<Line>  B </Line>
+					<Line>  C </Line>
+					<Line> DE </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<Block internalName="Penta:I">
+			<Description>Big I</Description>
+			<Bricks>
+				<DefaultTile colorPal="2" char="X"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="5">
+				<Shape>
+					<Line>  A  </Line>
+					<Line>  B  </Line>
+					<Line>  C  </Line>
+					<Line>  D  </Line>
+					<Line>  E  </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<Block internalName="Dummy:OneBomb">
+			<Description>One brick</Description>
+			<Bricks>
+				<DefaultTile colorPal="3"/>
+				<Tile idChar="A" colorPal="6" charName="BOMB"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="2">
+				<Shape>
+					<Line>  </Line>
+					<Line> A</Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<!--Block internalName="Dummy:TwoBomb">
+			<Description>One brick</Description>
+			<Bricks>
+				<DefaultTile colorPal="4"/>
+				<Tile idChar="A" colorPal="6" charName="BOMB"/>
+				<Tile idChar="B" colorPal="6" charName="BOMB"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="2">
+				<Shape>
+					<Line> B</Line>
+					<Line> A</Line>
+				</Shape>
+			</Shapes>
+		</Block-->
+
+		<!--Block internalName="Dummy:ThreeVertX">
+			<Description>ThreeVert with X</Description>
+			<Bricks>
+				<DefaultTile colorPal="5" char="X"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3" seqs="1">
+				<Shape>
+					<Line> A </Line>
+					<Line> B </Line>
+					<Line> C </Line>
+				</Shape>
+			</Shapes>
+		</Block-->
+		<Block internalName="Dummy:ThreeVert">
+			<Description>ThreeVert</Description>
+			<Bricks>
+				<DefaultTile colorPal="5"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line>A  </Line>
+					<Line>B  </Line>
+					<Line>C  </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<!--Block internalName="Dummy:ThreeHorizX">
+			<Description>ThreeHoriz with X</Description>
+			<Bricks>
+				<DefaultTile colorPal="5" char="X"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3" seqs="1">
+				<Shape>
+					<Line>   </Line>
+					<Line>ABC</Line>
+					<Line>   </Line>
+				</Shape>
+			</Shapes>
+		</Block-->
+		<!--Block internalName="Dummy:ThreeHoriz">
+			<Description>ThreeHoriz</Description>
+			<Bricks>
+				<DefaultTile colorPal="5"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line>ABC</Line>
+					<Line>   </Line>
+					<Line>   </Line>
+				</Shape>
+			</Shapes>
+		</Block-->
+		<!--Block internalName="Dummy:TwoHorizX">
+			<Description>TwoHoriz with X</Description>
+			<Bricks>
+				<DefaultTile colorPal="3" char="X"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="2" seqs="1">
+				<Shape>
+					<Line>AB</Line>
+					<Line>  </Line>
+				</Shape>
+			</Shapes>
+		</Block-->
+		<Block internalName="Dummy:TwoHoriz">
+			<Description>TwoHoriz</Description>
+			<Bricks>
+				<DefaultTile colorPal="6"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="2">
+				<Shape>
+					<Line>AB</Line>
+					<Line>  </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<!--Block internalName="Dummy:TwoVertX">
+			<Description>TwoVert with X</Description>
+			<Bricks>
+				<DefaultTile colorPal="4" char="X"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="2" seqs="1">
+				<Shape>
+					<Line>A </Line>
+					<Line>B </Line>
+				</Shape>
+			</Shapes>
+		</Block-->
+		<Block internalName="Dummy:TwoVert">
+			<Description>TwoVert</Description>
+			<Bricks>
+				<DefaultTile colorPal="4"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="2">
+				<Shape>
+					<Line>A </Line>
+					<Line>B </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<!--Block internalName="Dummy:OneX">
+			<Description>One brick with X</Description>
+			<Bricks>
+				<DefaultTile colorPal="6" char="X"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="2" seqs="1">
+				<Shape>
+					<Line>  </Line>
+					<Line> A</Line>
+				</Shape>
+			</Shapes>
+		</Block-->
+		<Block internalName="Dummy:One">
+			<Description>One brick</Description>
+			<Bricks>
+				<DefaultTile colorPal="6"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="2">
+				<Shape>
+					<Line>  </Line>
+					<Line> A</Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<!--Block internalName="Dummy:AngleX">
+			<Description>BigInvertedS</Description>
+			<Bricks>
+				<DefaultTile colorPal="6" char="X"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="2" seqs="1">
+				<Shape>
+					<Line>CB</Line>
+					<Line> A</Line>
+				</Shape>
+			</Shapes>
+		</Block-->
+		<Block internalName="Dummy:Angle">
+			<Description>BigInvertedS</Description>
+			<Bricks>
+				<DefaultTile colorPal="3"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="2">
+				<Shape>
+					<Line>CB</Line>
+					<Line> A</Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<!--Block internalName="Penta:QX">
+			<Description>Big Q with X</Description>
+			<Bricks>
+				<DefaultTile colorPal="7" char="X"/>
+				<Tile idChar="E" colorPal="7" charName="BOMB"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3" seqs="1">
+				<Shape>
+					<Line>AB </Line>
+					<Line>CD </Line>
+					<Line> E </Line>
+				</Shape>
+			</Shapes>
+		</Block-->
+		<!--Block internalName="Dummy:LongT">
+			<Description>Big T</Description>
+			<Bricks>
+				<DefaultTile colorPal="8"/>
+				<Tile idChar="E" colorPal="8" charName="BOMB"/>
+				<Tile idChar="F" colorPal="8" charName="BOMB"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="4">
+				<Shape>
+					<Line> A  </Line>
+					<Line> B  </Line>
+					<Line> C  </Line>
+					<Line>EDF </Line>
+				</Shape>
+			</Shapes>
+		</Block-->
+		<Block internalName="Dummy:BombAndNot">
+			<Description>Bomb piece</Description>
+			<Bricks>
+				<DefaultTile colorPal="9"/>
+				<Tile idChar="A" colorPal="9" charName="BOMB"/>
+				<Tile idChar="B" colorPal="9" charName="BOMB"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line> A </Line>
+					<Line> B </Line>
+					<Line> C </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+		<Block internalName="Classic:T">
+			<Description>Classic T shape</Description>
+			<Bricks>
+				<DefaultTile colorPal="8"/>
+			</Bricks>
+			<Shapes emptyId=" " wh="3">
+				<Shape>
+					<Line> C </Line>
+					<Line> BD</Line>
+					<Line> A </Line>
+				</Shape>
+			</Shapes>
+		</Block>
+	</Blocks>
+	<Layout>
+		<BackgroundWidget image="Background1" alignHoriz="FILL" alignVert="FILL" expandHoriz="true" expandVert="true">
+			<BoxWidget vertical="true" vertical_1="false" _ign_switchable="true">
+				<LevelShowWidget/>
+				<BoxWidget vertical="false" vertical_1="true" _ign_switchable="true">
+					<PreviewWidget name="ThePreview" team = "0" minTilesW="4" minTilesH="4" refWFactor="0.45" refHFactor="0.35"/>
+					<VarWidget title="Points" team="0" variable="Points" refWFactor="45%" refHFactor="10%" valueDigits="7"/>
+					<VarWidget title="Lines" team="0" variable="Lines" refWFactor="0.25" refHFactor="0.1" valueDigits="4"/>
+					<VarWidget title="Level" team="0" variable="Level" refWFactor="0.20" refHFactor="0.1" valueDigits="2"/>
+				</BoxWidget>
+			</BoxWidget>
+		</BackgroundWidget>
+	</Layout>
+	<Events>
+		<BackgroundEvent evId="EVID-BG" start="10" posZ="-1100">
+			<Image imgId="Background6" width="5" height="5"  relPosX="2" relPosY="3"/>
+			<Image imgId="Background7" width="5" height="5"  relPosX="2" relPosY="3"/>
+			<Image imgId="Background8" width="5" height="5"  relPosX="2" relPosY="3"/>
+			<Image imgId="Background2" width="5" height="4"  relPosX="2" relPosY="3"/>
+			<Image imgId="Background3" width="5" height="4"  relPosX="2" relPosY="3"/>
+			<Image imgId="Background4" width="4" height="5"  relPosX="2" relPosY="3"/>
+			<Image imgId="Background5" width="5" height="5"  relPosX="2" relPosY="3"/>
+		</BackgroundEvent>
+		<SysEvent evId="EVID-END" team="0" start="1000080" type="LEVEL_COMPLETED" createTexts="true">
+			<!--Listener groupName="GAME_OVER" event="EVID-T" msgName="ALARMS_FINISH"/-->
+			<Listener groupName="TEAM_FINISHED" event="EVID-SND-GAME-OVER" msgName="PLAY_FREE">
+				<ExistIf>
+					<Option name="SoundEnabled" team="" value="true"/>
+				</ExistIf>
+			</Listener>
+		</SysEvent>
+		<SoundEvent evId="EVID-SND-GAME-OVER" name="GameOver" listenerRealtive="true">
+			<ExistIf>
+				<Option name="SoundEnabled" team="" value="true"/>
+			</ExistIf>
+		</SoundEvent>
+		<!-- SysEvent evId="EVID-2" Active="FALSE" TickStart="0" Kind="ADD_POINTS" Param="-10000"/ -->
+
+		<!--AlarmsEvent evId="EVID-T" start="0">
+			<SetTicks value="600" repeat="10000"/>
+			<Listener groupName="TIMEOUT" event="EVID-SPEED" msg="0"/>
+			<Listener groupName="TIMEOUT" event="EVID-T" msgName="ALARMS_NEXT"/>
+			<Listener groupName="TIMEOUT" event="EVID-VAR-LEVEL" msgName="INC"/>
+			<Listener groupName="TIMEOUT" event="EVID-BG" msgName="IMG_NEXT"/>
+		</AlarmsEvent-->
+
+		<SpeedEvent evId="EVID-SPEED" start="0">
+			<Change repeat="1" _ign_level="1">
+				<Set interval="50" fallEachTicks="16"/>
+			</Change>
+			<Change repeat="10" _ign_level="2-11">
+				<Inc fallEachTicks="-1"/>
+			</Change>
+			<Change repeat="1" _ign_level="12">
+				<Set interval="45" fallEachTicks="6"/>
+			</Change>
+			<Change repeat="1" _ign_level="13">
+				<Set interval="45" fallEachTicks="5"/>
+			</Change>
+			<Change repeat="1" _ign_level="14">
+				<Set interval="40" fallEachTicks="5"/>
+			</Change>
+			<Change repeat="1" _ign_level="15">
+				<Set interval="40" fallEachTicks="4"/>
+			</Change>
+			<Change repeat="1" _ign_level="16">
+				<Set interval="35" fallEachTicks="4"/>
+			</Change>
+			<Change repeat="1" _ign_level="17">
+				<Set interval="35" fallEachTicks="3"/>
+			</Change>
+			<Change repeat="1" _ign_level="18">
+				<Set interval="30" fallEachTicks="3"/>
+			</Change>
+			<Change repeat="1" _ign_level="19">
+				<Set interval="30" fallEachTicks="2"/>
+			</Change>
+			<Change repeat="1" _ign_level="20">
+				<Set interval="30" fallEachTicks="1"/>
+			</Change>
+			<Change _ign_level="21-...">
+				<Inc interval="-4"/>
+			</Change>
+			<!--Listener groupName="CHANGED" event="EVID-ST-Faster" msg="0"/-->
+		</SpeedEvent>
+
+		<!--ShowTextEvent evId="EVID-ST-Faster" token="%%" duration="3000" type="Faded" sizeInTiles="2.5">
+			<Line>Faster%% im%%%% iv%%</Line>
+		</ShowTextEvent-->
+
+		<RowRemoverEvent evId="EVID-RR" start="0" fromGaps="0" toGaps="0">
+			<Listener groupName="REMOVED" event="EVID-CC-POINTS" msgName="CUMUL_SET_LEFT_COMPARE"/>
+			<Listener groupName="REMOVED" event="EVID-VAR-LINES" msgName="ADD_VALUE"/>
+			<Listener groupName="REMOVED" event="EVID-ARRAY-SOUND-NRS" msgName="ARRAY_GET">
+				<ExistIf>
+					<Option name="SoundEnabled" team="" value="true"/>
+				</ExistIf>
+			</Listener>
+		</RowRemoverEvent>
+
+		<ArrayEvent evId="EVID-ARRAY-SOUND-NRS" valueType="SOUND" _ign_DESC="removed lines to sound name index">
+			<ExistIf>
+				<Option name="SoundEnabled" team="" value="true"/>
+			</ExistIf>
+			<Filter>
+				<Input msgName="ARRAY_GET" toValue="0" _ign_newValue="suppressed"/>
+			</Filter>
+			<Dim size="21"/>
+			<Array els="L00,L01,L02,L03,L04,L05,L06,L07,L08,L09,L10,L11,L12,L13,L14,L15,L16,L17,L18,L19,L20"/>
+			<Listener groupName="ARRAY_RESULT" event="EVID-SND-NR"   msgName="PLAY_FREE_IDX"/>
+		</ArrayEvent>
+		<SoundEvent evId="EVID-SND-NR" listenerRealtive="true">
+			<ExistIf>
+				<Option name="SoundEnabled" team="" value="true"/>
+			</ExistIf>
+			<!--Listener groupName="SOUND_FINISHED"    event="EVID-SHOW-FINISHED" msg="0"/-->
+		</SoundEvent>
+
+		<VariableEvent evId="EVID-VAR-LEVEL" name="Level" team="0">
+			<Listener groupName="VAR_VALUE" event="EVID-CC-POINTS-CALC" msgName="CUMUL_MULT_LEFT"/>
+		</VariableEvent>
+
+		<CumulCmpEvent evId="EVID-CC-POINTS" _ign_DESC1="removed lines to points">
+			<Filter>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="1"  newValue="1000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="2"  newValue="3000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="3"  newValue="6000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="4"  newValue="10000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="5"  newValue="21000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="6 " newValue="36000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="7"  newValue="55000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="8"  newValue="100000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="9"  newValue="200000"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" value="10" newValue="500000"/>
+			</Filter>
+			<Listener groupName="COMPARED" event="EVID-CC-POINTS-CALC" msgName="CUMUL_SET_LEFT"/>
+			<Listener groupName="COMPARED" event="EVID-VAR-LEVEL"      msgName="VAR_GET_VALUE"/>
+			<Listener groupName="COMPARED" event="EVID-CC-POINTS-CALC" msgName="CUMUL_ADD_TO_LEFT_COMPARE"/>
+		</CumulCmpEvent>
+
+		<CumulCmpEvent evId="EVID-CC-POINTS-CALC"  _ign_DESC1="= points + (points / 20) * (Level - 1)">
+			<Filter>
+				<Input msgName="CUMUL_SET_LEFT" valueDiv="20"/>
+				<Input msgName="CUMUL_MULT_LEFT" valueAdd="-1"/>
+			</Filter>
+			<Listener groupName="COMPARED" event="EVID-VAR-POINTS" msgName="ADD_VALUE"/>
+		</CumulCmpEvent>
+
+		<VariableEvent evId="EVID-VAR-POINTS" name="Points" team="0">
+			<!--Filter>
+				<Input msg="71777" newMsgName="ADD_VALUE"/>
+				<Input msgName="ADD_VALUE" value="1" newValue="1000"/>
+				<Input msgName="ADD_VALUE" value="2" newValue="3000"/>
+				<Input msgName="ADD_VALUE" value="3" newValue="6000"/>
+				<Input msgName="ADD_VALUE" value="4" newValue="10000"/>
+				<Input msgName="ADD_VALUE" value="5" newValue="15000"/>
+				<Input msgName="ADD_VALUE" value="6" newValue="21000"/>
+				<Input msgName="ADD_VALUE" value="7" newValue="28000"/>
+				<Input msgName="ADD_VALUE" value="8" newValue="36000"/>
+				<Input msgName="ADD_VALUE" value="9" newValue="45000"/>
+				<Input msgName="ADD_VALUE" value="10" newValue="55000"/>
+			</Filter-->
+			<!--Listener group="10" event="EVID-LOG-POINTS" msg="777"/-->
+		</VariableEvent>
+
+		<VariableEvent evId="EVID-VAR-LINES" name="Lines" team="0">
+			<Listener groupName="VAR_CHANGED" event="EVID-CC-LEVEL_CHANGE" msgName="CUMUL_SET_LEFT_COMPARE"/>
+		</VariableEvent>
+
+		<CumulCmpEvent evId="EVID-CC-LEVEL_CHANGE" onCompare="COPY_LEFT_TO_RIGHT" initialLeft="1" initialRight="1"
+						_ign_DESC="number of lines to level map, outputs 1 if level has increased or 0">
+			<Filter>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="0" _ign_newValue="suppressed"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" valueAdd="1" valueDiv="10"/>
+			</Filter>
+			<Listener groupName="COMPARED_NOT_EQUAL" event="EVID-SPEED" msg="0"/>
+			<Listener groupName="COMPARED_NOT_EQUAL" event="EVID-BG" msgName="IMG_NEXT"/>
+			<Listener groupName="COMPARED_NOT_EQUAL" event="EVID-VAR-LEVEL" msgName="INC"/>
+			<!--Listener groupName="COMPARED" event="EVID-CC-LEVEL_SIGNAL" msgName="CUMUL_SET_LEFT_COMPARE"/-->
+		</CumulCmpEvent>
+
+		<!--LogEvent evId="EVID-LOG-POINTS" tag="77"/-->
+		<!--LogEvent evId="EVID-LOG-LINES" tag="88"/-->
+
+		<FeederEvent evId="EVID-FEEDER" start="5"  preview="ThePreview">
+			<Bunch prob="15" joined="true">
+				<BlockEvent block="Penta:T" initPos="-1" controllable="false" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Dummy:OneBomb" initPos="+2" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="10" joined="true">
+				<BlockEvent block="Penta:L" initPos="-1" controllable="false" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Dummy:OneBomb" initPos="+2" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="10" joined="true">
+				<BlockEvent block="Dummy:OneBomb" initPos="-1" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Penta:InvertedL" initPos="+1" controllable="false" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="10" joined="true">
+				<BlockEvent block="Penta:Q" initPos="-1" controllable="false" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Dummy:OneBomb" initPos="+2" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="10" joined="true">
+				<BlockEvent block="Penta:P" initPos="-1" controllable="false" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Dummy:OneBomb" initPos="+2" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" joined="true">
+				<BlockEvent block="Dummy:OneBomb" initPos="-2" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Penta:Cross" initPos="+1" controllable="false" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" joined="true">
+				<BlockEvent block="Penta:U" initPos="-1" shape="1" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Dummy:OneBomb" initPos="+2" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" joined="true">
+				<BlockEvent block="Dummy:OneBomb" initPos="-1" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Penta:I" initPos="+1" controllable="false" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+
+			<Bunch prob="15" joined="true">
+				<BlockEvent block="Dummy:TwoVert" initPos="-3" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Dummy:TwoHoriz" initPos="-1" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Dummy:TwoVert" initPos="+2" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<!--Bunch prob="15" joined="true">
+				<BlockEvent block="Dummy:ThreeVert" initPos="-1" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Dummy:One" initPos="+1" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch-->
+			<Bunch prob="15" joined="true">
+				<BlockEvent block="Dummy:Angle" initPos="-1" shape="1" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Dummy:ThreeVert" initPos="+1" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" joined="true">
+				<BlockEvent block="Dummy:Angle" initPos="-2" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Dummy:Angle" initPos="+1" shape="2" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Bunch prob="15" joined="true">
+				<BlockEvent block="Classic:T" initPos="+1" shape="1" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+				<BlockEvent block="Dummy:BombAndNot" initPos="-2" emitDestroyedBricks="true">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION" msgName="RESET"/>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="BRICK_DESTROYED" event="EVID-DQ-BRICK" msgName="QUEUE_VALUE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Listener groupName="CANNOT_PLACE_BLOCK" event="EVID-END" msg="0"/>
+			<Listener groupName="BUNCH_JOINED"     event="EVID-VAR-BLCK-DURATION" msgName="VAR_GET_VALUE"/>
+			<Listener groupName="BUNCH_NOT_JOINED" event="EVID-VAR-BLCK-DURATION" msgName="VAR_GET_VALUE"/>
+			<Listener groupName="BUNCH_NOT_JOINED" event="EVID-FEEDER" msgName="PAUSE"/>
+			<Listener groupName="BUNCH_NOT_JOINED" event="EVID-F-NJ" msgName="RESTART"/>
+			<Listener groupName="BUNCH_NOT_JOINED" event="EVID-SND-WRONG" msgName="PLAY_FREE">
+				<ExistIf>
+					<Option name="SoundEnabled" team="" value="true"/>
+				</ExistIf>
+			</Listener>
+		</FeederEvent>
+		<SoundEvent evId="EVID-SND-WRONG" name="Wrong" listenerRealtive="true">
+			<ExistIf>
+				<Option name="SoundEnabled" team="" value="true"/>
+			</ExistIf>
+		</SoundEvent>
+
+		<VariableEvent evId="EVID-VAR-BLCK-DURATION" name="BlockDuration">
+			<Listener groupName="VAR_VALUE" event="EVID-VAR-BLCK-DURATION-TO-POINTS" msgName="CUMUL_SET_LEFT_COMPARE"/>
+			<!--Listener groupName="VAR_VALUE" event="EVID-LOG-DURATION" msg="8888"/-->
+		</VariableEvent>
+		<!--LogEvent evId="EVID-LOG-DURATION" tag="888"/-->
+		<CumulCmpEvent evId="EVID-VAR-BLCK-DURATION-TO-POINTS" onCompare="RESET_LEFT"
+						_ign_DESC="transform millisec it took to drop bunch to points (the faster the better)">
+			<Filter>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="1000" valuePercent="-25" valueAdd="1000" _ign_range="1000(0ms) to 750(1000ms)"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="2000" valuePercent="-50" valueAdd="1250" _ign_range="750(1001ms) to 250(2000ms)"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="4000" valueDiv="-8"      valueAdd="500"  _ign_range="250(2001ms) to 0(4000ms)"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" newValue="0"                                      _ign_range="0(4001ms) to ..."/>
+			</Filter>
+			<Listener groupName="COMPARED" event="EVID-VAR-POINTS" msgName="ADD_VALUE"/>
+			<!--Listener groupName="COMPARED" event="EVID-LOG-POINTS" msg="9999"/-->
+		</CumulCmpEvent>
+		<!--LogEvent evId="EVID-LOG-POINTS" tag="999"/-->
+
+		<FeederEvent evId="EVID-F-NJ" repeat="1">
+			<Bunch prob="15" >
+				<BlockEvent block="NotJoined" initPos="-2">
+					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
+						<ExistIf>
+							<Option name="SoundEnabled" team="" value="true"/>
+						</ExistIf>
+					</Listener>
+				</BlockEvent>
+			</Bunch>
+			<Listener groupName="CANNOT_PLACE_BLOCK" event="EVID-END" msg="0"/>
+			<Listener groupName="BUNCH_DONE" event="EVID-FEEDER" msgName="RESUME"/>
+		</FeederEvent>
+
+		<SoundEvent evId="EVID-SND-FUSED" name="Fused" listenerRealtive="true">
+			<ExistIf>
+				<Option name="SoundEnabled" team="" value="true"/>
+			</ExistIf>
+		</SoundEvent>
+
+		<DelayedQueueEvent evId="EVID-DQ-BRICK" intervalMillisecs="150">
+			<ExistIf>
+				<Option name="SoundEnabled" team="" value="true"/>
+			</ExistIf>
+			<Listener groupName="VALUE" event="EVID-SND-BRICK-DESTROYED"   msgName="PLAY_FREE"/>
+		</DelayedQueueEvent>
+		<SoundEvent evId="EVID-SND-BRICK-DESTROYED" name="Explosion" listenerRealtive="true" volume="30">
+			<ExistIf>
+				<Option name="SoundEnabled" team="" value="true"/>
+			</ExistIf>
+		</SoundEvent>
+
+		<SoundEvent evId="EVID-SND-FREEZED" name="Freezed" listenerRealtive="true">
+			<ExistIf>
+				<Option name="SoundEnabled" team="" value="true"/>
+			</ExistIf>
+		</SoundEvent>
+
+	</Events>
+</Game>

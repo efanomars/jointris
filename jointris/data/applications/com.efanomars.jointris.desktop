@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Jointris
+Icon=jointris
+Type=Application
+Terminal=false
+Categories=Game;
+Keywords=tetris;join;blocks;stmm-input;stmm-games;play;
+Comment=Tetris-like game with bombs and parallel blocks
+Exec=jointris
+GenericName=Jointris
+Name[en_US]=Jointris
