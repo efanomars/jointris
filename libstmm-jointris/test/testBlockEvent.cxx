@@ -42,7 +42,7 @@ namespace testing
 {
 
 class BlockEventGameFixture : public GameFixture
-							//default , public FixtureVariantDevicesKeys_Two, public FixtureVariantDevicesJoystick_Two
+							, public FixtureVariantDevicesKeys_One //default , public FixtureVariantDevicesJoystick_Two
 							, public FixtureVariantPrefsTeams<1>
 							, public FixtureVariantPrefsMates<0,1>
 							//default , public FixtureVariantMatesPerTeamMax_Three, public FixtureVariantAIMatesPerTeamMax_Zero

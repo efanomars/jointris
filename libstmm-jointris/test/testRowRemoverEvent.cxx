@@ -43,7 +43,7 @@ namespace testing
 {
 
 class RowRemoverGameFixture : public GameFixture
-							//default , public FixtureVariantDevicesKeys_Two, public FixtureVariantDevicesJoystick_Two
+							, public FixtureVariantDevicesKeys_One //default , public FixtureVariantDevicesJoystick_Two
 							, public FixtureVariantPrefsTeams<1>
 							, public FixtureVariantPrefsMates<0,1>
 							//default , public FixtureVariantMatesPerTeamMax_Three, public FixtureVariantAIMatesPerTeamMax_Zero
@@ -630,7 +630,12 @@ TEST_CASE_METHOD(STFX<RowRemoverBlockCase3GameFixture>, "Case3_PushDown")
 		REQUIRE( m_p0BlockEvent == aLBs[0] );
 	}
 
-	assert(m_aKeyDeviceIds.size() > 0);
+	//shared_ptr<StdPreferences::Player>& refPlayer = m_refPrefs->getPlayerFull(0);
+	//auto oPairCapaKey = refPlayer->getKeyValue(BlockEvent::s_sKeyActionDown);
+	//assert(oPairCapaKey.second == stmi::HK_DOWN);
+	//assert(m_aKeyDeviceIds.size() > 0);
+	//const auto nKeyDevId = oPairCapaKey.first->getDevice()->getId();
+	assert(m_aKeyDeviceIds.size() == 1);
 	const auto nKeyDevId = m_aKeyDeviceIds[0];
 
 	REQUIRE( m_p0BlockEvent->blockPos() == NPoint{3, 2});
@@ -713,7 +718,7 @@ TEST_CASE_METHOD(STFX<RowRemoverBlockCase4GameFixture>, "Case4_PushDownFreeze")
 		REQUIRE( m_p0BlockEvent == aLBs[0] );
 	}
 
-	assert(m_aKeyDeviceIds.size() > 0);
+	assert(m_aKeyDeviceIds.size() == 1);
 	const auto nKeyDevId = m_aKeyDeviceIds[0];
 
 	REQUIRE( m_p0BlockEvent->blockPos() == NPoint{3, 2});

@@ -1,3 +1,11 @@
+jointris (0.24) unstable; urgency=low
+
+  * Fix PKGBUILD
+  * Fix tests
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Wed, 10 Jun 2020 19:29:39 +0100
+
 jointris (0.23) unstable; urgency=low
 
   * Adapt to stmm-games API changes
