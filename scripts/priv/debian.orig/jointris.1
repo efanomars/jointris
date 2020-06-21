@@ -10,6 +10,9 @@ jointris \- Joinable tetris blocks with bombs
 .SH OPTIONS
 .PP
 .br
+\fB   --touch\fR             Start in touch mode.
+.br
+.br
 \fB-s --no-sound\fR          Disables sound;
                        more efficient than setting volume(s) to 0.
 .br
@@ -39,6 +42,24 @@ Features:
  - custom shaped blocks and weird rotations
 .br
  - exploding bombs
+.br
+
+.PP
+Note:
+.br
+When started with --touch only single player games can be played.
+.br
+The game's window is partitioned in eight cells (over two columns).
+.br
+Each cell is associated with an action:
+.br
+- Pause  - Next
+.br
+- Down   - Next
+.br
+- Drop   - Rotate
+.br
+- Left   - Right
 .br
 
 .SH AUTHOR

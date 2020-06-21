@@ -78,7 +78,8 @@ protected:
 		const std::string sAppVersion = "323.232";
 		const bool bNoSoundMode = bNoSound;
 		const bool bTestMode = true;
-		jointrisSetupStdConfig(m_refStdConfig, m_refFakeDM, sJointris, sAppVersion, bNoSoundMode, bTestMode);
+		const bool bTouch = false;
+		jointrisSetupStdConfig(m_refStdConfig, m_refFakeDM, sJointris, sAppVersion, bNoSoundMode, bTestMode, bTouch);
 
 		std::vector<File> aGameFiles;
 		{

@@ -108,7 +108,7 @@ void BlockEvent::initRuntime() noexcept
 	m_eState = BLOCK_EVENT_STATE_ACTIVATE;
 	m_nPlaceTryMillisec = 0;
 	m_oKeys.clear();
-	m_nLastFallTick = std::numeric_limits<int32_t>::min();
+	m_nLastFallTick = std::numeric_limits<int32_t>::lowest();
 	m_nTouchWait = 0;
 	m_nSkippedFallCount = 0;
 	m_bPushed = false;
@@ -740,8 +740,9 @@ bool BlockEvent::canPlaceOnBoardRotate(int32_t& nDeltaX, int32_t& nDeltaY) const
 			while (bOk && (nBrickIdx < nTotBricks))
 			{
 				const int32_t nBrickId = aBrickId[nBrickIdx];
-				const int32_t nBoardX = nPosX + nDeltaX + oBlock.shapeBrickPosX(nShape, nBrickId);
-				const int32_t nBoardY = nPosY + nDeltaY + oBlock.shapeBrickPosY(nShape, nBrickId);
+				const NPoint oBrickPos = oBlock.shapeBrickPos(nShape, nBrickId);
+				const int32_t nBoardX = nPosX + nDeltaX + oBrickPos.m_nX;
+				const int32_t nBoardY = nPosY + nDeltaY + oBrickPos.m_nY;
 				const bool bVisible = oBlock.shapeBrickVisible(nShape, nBrickId);
 
 				if (bVisible) {

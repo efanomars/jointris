@@ -63,7 +63,7 @@ static void printDirectories(const GameDiskFiles& oGameDiskFiles) noexcept
 }
 
 std::string jointrisSetup(MainWindowData& oMainWindowData, const std::string& sJointris, const std::string& sAppVersion
-						, bool bNoSound, bool bTestMode, bool bFullScreen) noexcept
+						, bool bNoSound, bool bTestMode, bool bFullScreen, bool bTouchMode) noexcept
 {
 	stmi::GtkDeviceManager::Init oInit;
 	oInit.m_sAppName = sJointris;
@@ -79,7 +79,7 @@ std::string jointrisSetup(MainWindowData& oMainWindowData, const std::string& sJ
 	}
 
 	shared_ptr<StdConfig>& refStdConfig = oMainWindowData.m_refStdConfig;
-	jointrisSetupStdConfig(refStdConfig, refDeviceManager, sJointris, sAppVersion, bNoSound, bTestMode);
+	jointrisSetupStdConfig(refStdConfig, refDeviceManager, sJointris, sAppVersion, bNoSound, bTestMode, bTouchMode);
 
 	oMainWindowData.m_bFullscreen = bFullScreen;
 	//

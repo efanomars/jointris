@@ -155,38 +155,71 @@
 	</Blocks>
 	<Layout>
 		<BackgroundWidget image="Background1" alignHoriz="FILL" alignVert="FILL" expandHoriz="true" expandVert="true">
-			<BoxWidget vertical_0="true" vertical_1="false">
-				<BoxWidget vertical_0="false" vertical_1="true">
-					<BoxWidget vertical_0="true" vertical_1="false" team="0" mate="0">
-						<LevelShowWidget team="0" mate="0" name="Main" interactive="false">
-						</LevelShowWidget>
-						<PreviewWidget name="ThePreview0" team="0" mate="0" minTilesW="4" minTilesH="4" refWFactor="30%" refHFactor="0.3">
+			<ActionsBoxWidget vertical="true" expandHoriz="true" expandVert="true" alignHoriz="FILL" alignVert="FILL">
+				<PassthroughIf>
+					<Option name="TouchMode" value="false"/>
+				</PassthroughIf>
+				<GridRow weight="10">
+					<ExistIf>
+						<Option name="TouchMode" value="true"/>
+					</ExistIf>
+					<Cell weight="10" interrupt="PAUSE"/>
+					<Cell weight="10" keyAction="BlockEvent:Next"/>
+				</GridRow>
+				<GridRow weight="30">
+					<ExistIf>
+						<Option name="TouchMode" value="true"/>
+					</ExistIf>
+					<Cell keyAction="BlockEvent:Down"/>
+					<Cell keyAction="BlockEvent:Next"/>
+				</GridRow>
+				<GridRow weight="30">
+					<ExistIf>
+						<Option name="TouchMode" value="true"/>
+					</ExistIf>
+					<Cell keyAction="BlockEvent:Drop"/>
+					<Cell keyAction="BlockEvent:Rotate"/>
+				</GridRow>
+				<GridRow weight="10">
+					<ExistIf>
+						<Option name="TouchMode" value="true"/>
+					</ExistIf>
+					<Cell keyAction="BlockEvent:Left"/>
+					<Cell keyAction="BlockEvent:Right"/>
+				</GridRow>
+				<BoxWidget vertical_0="true" vertical_1="false">
+					<BoxWidget vertical_0="false" vertical_1="true">
+						<BoxWidget vertical_0="true" vertical_1="false" team="0" mate="0">
+							<LevelShowWidget team="0" mate="0" name="Main" interactive="false">
+							</LevelShowWidget>
+							<PreviewWidget name="ThePreview0" team="0" mate="0" minTilesW="4" minTilesH="4" refWFactor="30%" refHFactor="0.3">
+								<ExistIf>
+									<Option name="Feeder::Preview" ownerType="GAME" value="true"/>
+								</ExistIf>
+							</PreviewWidget>
+						</BoxWidget>
+						<TransparentWidget refWFactor="0.1" refHFactor="0.05" alignVert_0="FILL" expandVert_0="true" alignHoriz_1="FILL" expandHoriz_1="true">
 							<ExistIf>
-								<Option name="Feeder::Preview" ownerType="GAME" value="true"/>
+								<Mates team="0" from="2"/>
 							</ExistIf>
-						</PreviewWidget>
+						</TransparentWidget>
+						<BoxWidget vertical_0="true" vertical_1="false" team="0" mate="1">
+							<LevelShowWidget team="0" mate="1" name="Main" interactive="false">
+							</LevelShowWidget>
+							<PreviewWidget name="ThePreview1" team="0" mate="1" minTilesW="4" minTilesH="4" refWFactor="30%" refHFactor="0.3">
+								<ExistIf>
+									<Option name="Feeder::Preview" ownerType="GAME" value="true"/>
+								</ExistIf>
+							</PreviewWidget>
+						</BoxWidget>
 					</BoxWidget>
-					<TransparentWidget refWFactor="0.1" refHFactor="0.05" alignVert_0="FILL" expandVert_0="true" alignHoriz_1="FILL" expandHoriz_1="true">
-						<ExistIf>
-							<Mates team="0" from="2"/>
-						</ExistIf>
-					</TransparentWidget>
-					<BoxWidget vertical_0="true" vertical_1="false" team="0" mate="1">
-						<LevelShowWidget team="0" mate="1" name="Main" interactive="false">
-						</LevelShowWidget>
-						<PreviewWidget name="ThePreview1" team="0" mate="1" minTilesW="4" minTilesH="4" refWFactor="30%" refHFactor="0.3">
-							<ExistIf>
-								<Option name="Feeder::Preview" ownerType="GAME" value="true"/>
-							</ExistIf>
-						</PreviewWidget>
+					<BoxWidget vertical_0="false" vertical_1="true">
+						<VarWidget title="Points" team="0" mate="" variable="Points" refWFactor="40%" refHFactor="20%" valueDigits="7"/>
+						<VarWidget title="Lines" team="0" mate="" variable="Lines" refWFactor="30%" refHFactor="20%" valueDigits="4"/>
+						<VarWidget title="Level" team="0" mate="" variable="Level" refWFactor="30%" refHFactor="20%" valueDigits="2"/>
 					</BoxWidget>
 				</BoxWidget>
-				<BoxWidget vertical_0="false" vertical_1="true">
-					<VarWidget title="Points" team="0" mate="" variable="Points" refWFactor="40%" refHFactor="20%" valueDigits="7"/>
-					<VarWidget title="Lines" team="0" mate="" variable="Lines" refWFactor="30%" refHFactor="20%" valueDigits="4"/>
-					<VarWidget title="Level" team="0" mate="" variable="Level" refWFactor="30%" refHFactor="20%" valueDigits="2"/>
-				</BoxWidget>
-			</BoxWidget>
+			</ActionsBoxWidget>
 		</BackgroundWidget>
 	</Layout>
 	<Events>

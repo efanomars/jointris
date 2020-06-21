@@ -387,7 +387,7 @@ void FeederEvent::calcNext() noexcept
 			const int32_t nValue = oRandPair.second;
 			const RANDOM_TYPE eRT = oRandPair.first;
 			if (eRT == RANDOM_TYPE_INT32) {
-				const int64_t n64Value = static_cast<int64_t>(nValue) - static_cast<int64_t>(std::numeric_limits<int32_t>::min());
+				const int64_t n64Value = static_cast<int64_t>(nValue) - static_cast<int64_t>(std::numeric_limits<int32_t>::lowest());
 				const double f01Value = 1.0 * n64Value / (static_cast<int64_t>(1) << 32);
 				assert((f01Value >= 0.0) && (f01Value < 1.0));
 				nNextRand = static_cast<int32_t>(f01Value * nRandomRange);

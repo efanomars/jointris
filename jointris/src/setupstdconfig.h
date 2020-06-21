@@ -37,11 +37,13 @@ using std::shared_ptr;
  * @param refDeviceManager The device manager. Cannot be null.
  * @param sJointris Cannot be empty.
  * @param sAppVersion Cannot be empty.
- * @param bNoSound
- * @param bTestMode
+ * @param bNoSound Whether sound is disabled.
+ * @param bTestMode Whether in test mode.
+ * @param bTouchMode Whether touch input mode.
  */
 void jointrisSetupStdConfig(shared_ptr<StdConfig>& refStdConfig, const shared_ptr<stmi::DeviceManager>& refDeviceManager
-							, const std::string& sJointris, const std::string& sAppVersion, bool bNoSound, bool bTestMode) noexcept;
+							, const std::string& sJointris, const std::string& sAppVersion
+							, bool bNoSound, bool bTestMode, bool bTouchMode) noexcept;
 
 } // namespace stmg
 

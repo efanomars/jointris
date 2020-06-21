@@ -134,21 +134,54 @@
 	</Blocks>
 	<Layout>
 		<BackgroundWidget image="Background1" alignHoriz="FILL" alignVert="FILL" expandHoriz="true" expandVert="true">
-			<BoxWidget vertical="true" _ign_switchable="false">
-				<BoxWidget vertical="false" _ign_switchable="false">
-					<PreviewWidget name="ThePreview1" team="0" alignHoriz="CENTER"
-									minTilesW="4" minTilesH="4" refWFactor="0.2" refHFactor="0.2"/>
-					<VarWidget title="Points" team="0" alignHoriz="CENTER"
-								variable="Points" refWFactor="45%" refHFactor="10%" valueDigits="7"/>
-					<VarWidget title="Lines" team="0" alignHoriz="CENTER"
-								variable="Lines" refWFactor="0.25" refHFactor="0.1" valueDigits="4"/>
-					<VarWidget title="Level" team="0" alignHoriz="CENTER"
-								variable="Level" refWFactor="0.20" refHFactor="0.1" valueDigits="2"/>
-					<PreviewWidget name="ThePreview2" team="0" alignHoriz="CENTER"
-									minTilesW="4" minTilesH="4" refWFactor="0.2" refHFactor="0.2"/>
+			<ActionsBoxWidget vertical="true" expandHoriz="true" expandVert="true" alignHoriz="FILL" alignVert="FILL">
+				<PassthroughIf>
+					<Option name="TouchMode" value="false"/>
+				</PassthroughIf>
+				<GridRow weight="10">
+					<ExistIf>
+						<Option name="TouchMode" value="true"/>
+					</ExistIf>
+					<Cell weight="10" interrupt="PAUSE"/>
+					<Cell weight="10" keyAction="BlockEvent:Next"/>
+				</GridRow>
+				<GridRow weight="30">
+					<ExistIf>
+						<Option name="TouchMode" value="true"/>
+					</ExistIf>
+					<Cell keyAction="BlockEvent:Down"/>
+					<Cell keyAction="BlockEvent:Next"/>
+				</GridRow>
+				<GridRow weight="30">
+					<ExistIf>
+						<Option name="TouchMode" value="true"/>
+					</ExistIf>
+					<Cell keyAction="BlockEvent:Drop"/>
+					<Cell keyAction="BlockEvent:Rotate"/>
+				</GridRow>
+				<GridRow weight="10">
+					<ExistIf>
+						<Option name="TouchMode" value="true"/>
+					</ExistIf>
+					<Cell keyAction="BlockEvent:Left"/>
+					<Cell keyAction="BlockEvent:Right"/>
+				</GridRow>
+				<BoxWidget vertical="true" _ign_switchable="false">
+					<BoxWidget vertical="false" _ign_switchable="false">
+						<PreviewWidget name="ThePreview1" team="0" alignHoriz="CENTER"
+										minTilesW="4" minTilesH="4" refWFactor="0.2" refHFactor="0.2"/>
+						<VarWidget title="Points" team="0" alignHoriz="CENTER"
+									variable="Points" refWFactor="45%" refHFactor="10%" valueDigits="7"/>
+						<VarWidget title="Lines" team="0" alignHoriz="CENTER"
+									variable="Lines" refWFactor="0.25" refHFactor="0.1" valueDigits="4"/>
+						<VarWidget title="Level" team="0" alignHoriz="CENTER"
+									variable="Level" refWFactor="0.20" refHFactor="0.1" valueDigits="2"/>
+						<PreviewWidget name="ThePreview2" team="0" alignHoriz="CENTER"
+										minTilesW="4" minTilesH="4" refWFactor="0.2" refHFactor="0.2"/>
+					</BoxWidget>
+					<LevelShowWidget interactive="false"/>
 				</BoxWidget>
-				<LevelShowWidget/>
-			</BoxWidget>
+			</ActionsBoxWidget>
 		</BackgroundWidget>
 	</Layout>
 	<Events>
