@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019  Stefano Marsili, <stemars@gmx.ch>
+ * Copyright © 2019-2020  Stefano Marsili, <stemars@gmx.ch>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -86,7 +86,7 @@ public:
 	void trigger(int32_t nMsg, int32_t nValue, Event* p0TriggeringEvent) noexcept override;
 
 	// Inputs
-	enum { 
+	enum {
 		MESSAGE_PAUSE = 100 /**< Pause. Stops until MESSAGE_RESUME is received. Ignored if already pausing or finished. */
 		, MESSAGE_RESUME = 101 /**< Resume. Stops until MESSAGE_RESUME is received. Ignored if not pausing or finished. */
 		, MESSAGE_RESTART = 110 /**< Restart. Only works if feeder successfully finished all its blocks. */
@@ -99,7 +99,7 @@ public:
 											 * Disregards m_bAllowBlockBunchRepetition passed to the constructor. */
 	};
 	// Outputs
-	enum { 
+	enum {
 		LISTENER_GROUP_BUNCH_DONE = 10 /**< All blocks of a bunch not supposed to join freezed. */
 		, LISTENER_GROUP_BUNCH_JOINED = 15 /**< All blocks of a bunch supposed to join did. */
 		, LISTENER_GROUP_BUNCH_NOT_JOINED = 16 /**< All blocks of a bunch supposed to join didn't. */

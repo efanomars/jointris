@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!--
- * Copyright © 2019-2020  Stefano Marsili, <stemars@gmx.ch>
+ * Copyright © 2020  Stefano Marsili, <stemars@gmx.ch>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,12 @@
  * License along with this program; if not, see <http://www.gnu.org/licenses/>
 -->
 <!--
- * File:   classic.xml
+ * File:   phantom.xml
 -->
-<Game _ign_version="1" internalName="Classic" difficulty="0">
-	<Description>The classic tetris game.</Description>
+<Game _ign_version="1" internalName="Phantom" difficulty="1000">
+	<Description>The classic tetris game with a</Description>
+	<Description>progressively invisible board.</Description>
+	<Description>Dropping fast is rewarded with points.</Description>
 	<Author name="Stefano Marsili"  email="stemars@gmx.ch" website="https://efanomars.com"/>
 	<Constraints levels="1" teams="1" matesPerTeamMax="3"/>
 	<Variables>
@@ -27,12 +29,15 @@
 		<Var name="Lines" owner="TEAM" initial="0"/>
 		<Var name="Level" owner="TEAM" initial="1"/>
 		<Var name="Drought" owner="TEAM" initial="0"/>
+		<Var name="Clock" owner="TEAM" initial="0" addTime="true" timeBase="SEC" timeFormat="MIN_SEC" />
 
 		<Var name="BlockDuration" owner="GAME" initial="0" addTime="true" timeBase="MILLISEC"/>
+		<Var name="Invisible" owner="GAME" initial="1"/>
 	</Variables>
 	<HighscoresDefinition maxScores="20">
 		<Element description="Points"  varName="Points"/>
 		<Element description="Lines"  varName="Lines"/>
+		<Element description="Time"    varName="Clock"  lowestBest="true"/>
 		<Eligibility varName="Lines" min="1"/>
 		<Discriminator type="HUMAN_TEAM_MATES"/>
 	</HighscoresDefinition>
@@ -175,6 +180,7 @@
 						<VarWidget title="Score" team="0" variable="Points" refWFactor="45%" refHFactor="10%" valueDigits="7"/>
 						<VarWidget title="Lines" team="0" variable="Lines" refWFactor="0.25" refHFactor="0.1" valueDigits="4"/>
 						<VarWidget title="Drought" team="0" variable="Drought" refWFactor="0.20" refHFactor="0.1" valueDigits="2"/>
+						<VarWidget title="Time" team="0" variable="Clock" refWFactor="0.20" refHFactor="0.1" valueDigits="2"/>
 						<VarWidget title="Level" team="0" variable="Level" refWFactor="0.20" refHFactor="0.1" valueDigits="2"/>
 					</BoxWidget>
 				</BoxWidget>
@@ -182,7 +188,7 @@
 		</BackgroundWidget>
 	</Layout>
 	<Events>
-		<BackgroundEvent evId="EVID-BG" start="10" posZ="-1100">
+		<BackgroundEvent evId="EVID-BG" start="10" posZ="-0100">
 			<Image imgId="Background5" width="5" height="5"  relPosX="2" relPosY="3">
 				<ExistIf>
 					<Players value="1"/>
@@ -315,6 +321,7 @@
 			<Listener groupName="COMPARED_NOT_EQUAL" event="EVID-SPEED" msg="0"/>
 			<Listener groupName="COMPARED_NOT_EQUAL" event="EVID-BG" msgName="IMG_NEXT"/>
 			<Listener groupName="COMPARED_NOT_EQUAL" event="EVID-VAR-LEVEL" msgName="INC"/>
+			<Listener groupName="COMPARED_NOT_EQUAL" event="EVID-ALARM-FLASH" msgName="ALARMS_STAGE_NEXT"/>
 			<!--Listener groupName="COMPARED" event="EVID-CC-LEVEL_SIGNAL" msgName="CUMUL_SET_LEFT_COMPARE"/-->
 		</CumulCmpEvent>
 
@@ -396,6 +403,8 @@
 					</Listener>
 				</BlockEvent>
 			</Bunch>
+			<Listener groupName="CANNOT_PLACE_BLOCK" event="EVID-VAR-INVISIBLE" msgName="INC"/>
+			<Listener groupName="CANNOT_PLACE_BLOCK" event="EVID-TA-ALL" msg="0"/>
 			<Listener groupName="CANNOT_PLACE_BLOCK" event="EVID-END" msg="0"/>
 			<Listener groupName="BUNCH_DONE" event="EVID-VAR-BLCK-DURATION" msgName="VAR_GET_VALUE"/>
 		</FeederEvent>
@@ -411,10 +420,10 @@
 		<CumulCmpEvent evId="EVID-VAR-BLCK-DURATION-TO-POINTS" onCompare="RESET_LEFT"
 						_ign_DESC="transform millisec it took to drop bunch to points (the faster the better)">
 			<Filter>
-				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="500"  valuePercent="-50" valueAdd="1000" _ign_range="1000(0ms) to 750(500ms)"/>
-				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="1000" valueMult="-1"     valueAdd="1250" _ign_range="750(501ms) to 250(1000ms)"/>
-				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="3000" valueDiv="-8"      valueAdd="375"  _ign_range="250(1001ms) to 0(3000ms)"/>
-				<Input msgName="CUMUL_SET_LEFT_COMPARE" newValue="0"                                      _ign_range="0(3001ms) to ..."/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="500"  valueMult="-5"     valueAdd="10000" _ign_range="10000(0ms) to 7500(500ms)"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="1000" valueMult="-10"    valueAdd="12500" _ign_range="7500(501ms) to 2500(1000ms)"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" toValue="6000" valuePercent="-50" valueAdd="3000"  _ign_range="2500(1001ms) to 0(6000ms)"/>
+				<Input msgName="CUMUL_SET_LEFT_COMPARE" newValue="0"                                       _ign_range="0(6001ms) to ..."/>
 			</Filter>
 			<Listener groupName="COMPARED" event="EVID-VAR-POINTS" msgName="ADD_VALUE"/>
 			<!--Listener groupName="COMPARED" event="EVID-LOG-POINTS" msg="9999"/-->
@@ -429,6 +438,7 @@
 
 		<SysEvent evId="EVID-END" team="0" start="1000080" type="LEVEL_COMPLETED" createTexts="true">
 			<!--Listener groupName="GAME_OVER" event="EVID-T" msgName="ALARMS_FINISH"/-->
+			<!--Listener groupName="TEAM_FINISHED" event="EVID-BG" msgName="CONTROL_STOP"/-->
 			<Listener groupName="TEAM_FINISHED" event="EVID-SND-GAME-OVER" msgName="PLAY_FREE">
 				<ExistIf>
 					<Option name="SoundEnabled" team="" value="true"/>
@@ -440,5 +450,55 @@
 				<Option name="SoundEnabled" team="" value="true"/>
 			</ExistIf>
 		</SoundEvent>
+
+		<AlarmsEvent evId="EVID-ALARM-FLASH"  start="0"  priority="-10">
+			<SetMillisec value="5000" repeat="1000000"/>
+			<SetMillisec value="5500" repeat="1000000"/>
+			<SetMillisec value="6000" repeat="1000000"/>
+			<SetMillisec value="6500" repeat="1000000"/>
+			<SetMillisec value="7000" repeat="1000000"/>
+			<SetMillisec value="7500" repeat="1000000"/>
+			<SetMillisec value="8000" repeat="1000000"/>
+			<SetMillisec value="8500" repeat="1000000"/>
+			<SetMillisec value="9000" repeat="1000000"/>
+			<SetMillisec value="9500" repeat="1000000"/>
+			<SetMillisec value="10000" repeat="1000000"/>
+			<Listener groupName="TIMEOUT" event="EVID-HALF-SEC" msgName="ALARMS_NEXT"/>
+			<Listener groupName="TIMEOUT" event="EVID-SND-ALERT" msgName="PLAY_FREE">
+				<ExistIf>
+					<Option name="SoundEnabled" team="" value="true"/>
+				</ExistIf>
+			</Listener>
+			<Listener groupName="TIMEOUT" event="EVID-ALARM-FLASH" msgName="ALARMS_NEXT"/>
+		</AlarmsEvent>
+		<SoundEvent evId="EVID-SND-ALERT" name="Bonc" listenerRealtive="true">
+			<ExistIf>
+				<Option name="SoundEnabled" team="" value="true"/>
+			</ExistIf>
+		</SoundEvent>
+
+		<AlarmsEvent evId="EVID-HALF-SEC">
+			<SetMillisec value="500" repeat="10000000"/>
+			<Listener groupName="TIMEOUT" event="EVID-VAR-INVISIBLE" msgName="INC"/>
+			<Listener groupName="TIMEOUT" event="EVID-TA-ALL" msg="0"/>
+		</AlarmsEvent>
+
+		<VariableEvent evId="EVID-VAR-INVISIBLE" name="Invisible">
+			<Filter>
+				<Input msgName="SET_VALUE" newValue="1"/>
+			</Filter>
+		</VariableEvent>
+
+		<TileAnimatorEvent evId="EVID-TA-ALL" aniName="TILEANI:REMOVING" repeat="10" blocks="false"
+							durationMillisec="350" durationTicks="5" count="1">
+			<Select><Not><Tile/></Not></Select>
+			<Listener groupName="FINISHED" event="EVID-VAR-INVISIBLE" msgName="SET_VALUE"/>
+			<Listener groupName="FINISHED" event="EVID-TA-ALL2" msg="0"/>
+		</TileAnimatorEvent>
+
+		<TileAnimatorEvent evId="EVID-TA-ALL2" aniName="TILEANI:REMOVING" repeat="1" blocks="false" durationTicks="1" count="1">
+			<Select><Not><Tile/></Not></Select>
+			<Listener groupName="FINISHED" event="EVID-VAR-INVISIBLE" msgName="SET_VALUE"/>
+		</TileAnimatorEvent>
 	</Events>
 </Game>

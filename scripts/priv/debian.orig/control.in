@@ -24,7 +24,7 @@ Depends: libstmm-games@STMM_JOINTRIS_REQ_STMM_GAMES_MAJOR_VERSION@ (>= @STMM_JOI
        , ${shlibs:Depends}, ${misc:Depends}
 Recommends: jointris
 Description: Joinable tetris blocks with bombs - model
- Tetris like game with multiple joinable blocks.
+ Tetris-like game with multiple joinable blocks.
  .
  This C++ library provides the game's model events needed by the
  jointris executable.
@@ -37,7 +37,7 @@ Depends: libstmm-jointris@STMM_JOINTRIS_MAJOR_VERSION@ (= ${binary:Version})
        , ${misc:Depends}
 Recommends: jointris
 Description: Joinable tetris blocks with bombs - model (develop)
- Tetris like game with multiple joinable blocks.
+ Tetris-like game with multiple joinable blocks.
  .
  This library provides the game's model events needed by the
  jointris executable.
@@ -56,7 +56,7 @@ Depends: libstmm-jointris@STMM_JOINTRIS_MAJOR_VERSION@ (>= @STMM_JOINTRIS_XML_RE
        , ${shlibs:Depends}, ${misc:Depends}
 Recommends: jointris
 Description: Joinable tetris blocks with bombs - xml definitions
- Tetris like game with multiple joinable blocks.
+ Tetris-like game with multiple joinable blocks.
  .
  This C++ library provides the xml definitions of events defined in
  libstmm-jointris@STMM_JOINTRIS_MAJOR_VERSION@.
@@ -72,7 +72,7 @@ Depends: libstmm-jointris-xml@STMM_JOINTRIS_XML_MAJOR_VERSION@ (= ${binary:Versi
        , ${misc:Depends}
 Recommends: jointris
 Description: Joinable tetris blocks with bombs - xml definitions (develop)
- Tetris like game with multiple joinable blocks.
+ Tetris-like game with multiple joinable blocks.
  .
  This library provides the xml definitions of events defined in
  libstmm-jointris@STMM_JOINTRIS_MAJOR_VERSION@.
@@ -93,11 +93,12 @@ Depends: libstmm-jointris-xml@STMM_JOINTRIS_XML_MAJOR_VERSION@ (>= @JOINTRIS_REQ
 Suggests: libstmm-input-gtk-bt
         , libstmm-input-gtk-xi
 Description: Joinable tetris blocks with bombs
- Tetris like game with multiple joinable blocks.
+ Tetris-like game with multiple joinable blocks.
  .
  Features:
    - multiple blocks that can be joined together
    - multiple players collaborating or competing
    - custom shaped blocks and weird rotations
    - exploding bombs
+   - invisible stack
 

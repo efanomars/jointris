@@ -15,6 +15,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see <http://www.gnu.org/licenses/>
 -->
+<!--
+ * File:   classicVs.xml
+-->
 <Game _ign_version="1" internalName="ClassicVs" difficulty="150">
 	<Description>The classic tetris game: one vs one.</Description>
 	<Description>With the same blocks sequence.</Description>
@@ -189,7 +192,7 @@
 				<Option name="SoundEnabled" team="" value="true"/>
 			</ExistIf>
 		</SoundEvent>
-		<ShowTextEvent evId="EVID-ST-GameOver" type="Faded" fontSizeInTiles="2.0" duration="-1" 
+		<ShowTextEvent evId="EVID-ST-GameOver" type="Faded" fontSizeInTiles="2.0" duration="-1"
 						posX="0" posY="16" width="10" height="3">
 			<Line>Game Over</Line>
 		</ShowTextEvent>

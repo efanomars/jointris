@@ -1,19 +1,19 @@
-# File: jointris/CMakeLists.txt
+# Copyright © 2019-2020  Stefano Marsili, <stemars@gmx.ch>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public
+# License along with this program; if not, see <http://www.gnu.org/licenses/>
 
-#  Copyright © 2019-2020  Stefano Marsili, <stemars@gmx.ch>
-#
-#  This program is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 3 of the License, or
-#  (at your option) any later version.
-#
-#  This program is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public
-#  License along with this program; if not, see <http://www.gnu.org/licenses/>
+# File:   jointris/CMakeLists.txt
 
 cmake_minimum_required(VERSION 3.0)
 
@@ -58,6 +58,7 @@ set(STMMI_JTR_DATA_GAMES_FILES
         "${STMMI_JTR_DATA_GAMES_DIR}/largo.xml"
         "${STMMI_JTR_DATA_GAMES_DIR}/penta.xml"
         "${STMMI_JTR_DATA_GAMES_DIR}/permutis.xml"
+        "${STMMI_JTR_DATA_GAMES_DIR}/phantom.xml"
         )
 set(STMMI_JTR_DATA_GAMES_IMG_FILES
         "${STMMI_JTR_DATA_GAMES_DIR}/classic.png"
@@ -69,6 +70,7 @@ set(STMMI_JTR_DATA_GAMES_IMG_FILES
         "${STMMI_JTR_DATA_GAMES_DIR}/largo.png"
         "${STMMI_JTR_DATA_GAMES_DIR}/penta.png"
         "${STMMI_JTR_DATA_GAMES_DIR}/permutis.png"
+        "${STMMI_JTR_DATA_GAMES_DIR}/phantom.png"
         )
 set(STMMI_JTR_DATA_OTHER_FILES
         "${STMMI_JTR_DATA_DIR}/games/jointris.png"

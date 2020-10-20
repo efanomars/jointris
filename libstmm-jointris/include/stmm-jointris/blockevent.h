@@ -125,7 +125,7 @@ public:
 	void boardPostModify(const Coords& oCoords) noexcept override;
 
 	// Outputs
-	enum { 
+	enum {
 		LISTENER_GROUP_CANNOT_PLACE = 10 /**< The level block couldn't be placed on the board */
 		, LISTENER_GROUP_COULD_PLACE = 11 /**< The level block could be placed on the board. */
 		, LISTENER_GROUP_FUSED_WITH = 20 /**< The level block fused with another level block (actively). */

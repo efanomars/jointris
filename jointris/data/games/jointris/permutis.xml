@@ -15,6 +15,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see <http://www.gnu.org/licenses/>
 -->
+<!--
+ * File:   permutis.xml
+-->
 <Game _ign_version="1" internalName="Permutis" difficulty="400">
 	<Description>All possible blocks with 5 or less tiles.</Description>
 	<Author name="Stefano Marsili"  email="stemars@gmx.ch" website="https://efanomars.com"/>

@@ -15,6 +15,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see <http://www.gnu.org/licenses/>
 -->
+<!--
+ * File:   libstmm-jointris-xml/data/themes/jointris/simple_j.thm/theme.xml
+-->
 <Theme _ign_version="1" internalName="Simple-J">
 	<Description>Simple - Jointris game theme</Description>
 	<Supports>jointris</Supports>
@@ -68,34 +71,86 @@
 			</Frame>
 		</LevelShowFactory>
 	</WidgetFactories>
-	<DrawTile>
+	<DrawBlockTile>
 		<!--Next/-->
-		<Conditional>
-			<If><Char charName="BOMB"/></If>
-				<Mask aniId="Cracks" aniName="TILEANI:REMOVING"     _ign_aniFactor="10%" _ign_invert="true">
-					<Mask imgFile="squaremask.svg">
-						<Alpha>
-							<Fill/>
-						</Alpha>
-						<!--Rotate aniName="TILEANI:BOMB"-->
-						<Image imgFile="bomb.svg"/>
-						<!--/Rotate-->
-					</Mask>
-				</Mask>
-			<Else/>
-				<Rotate aniName="TILEANI:REMOVING"      _ign_invert="true" _ign_aniFactor="2%">
-							<!--Rotate aniName="TILEANI:BOMB"-->
-					<Mask imgFile="squaremask.svg">
-						<Alpha>
-							<Fill/>
-							<Text sizeFactor="100%"/>
-						</Alpha>
-					</Mask>
-							<!--/Rotate-->
-				</Rotate>
-		</Conditional>
+		<Mask imgFile="squaremask.svg">
+			<Conditional>
+				<If><Char charName="BOMB"/></If>
+					<Alpha>
+						<Fill/>
+					</Alpha>
+					<!--Rotate aniName="TILEANI:BOMB"-->
+					<Image imgFile="bomb.svg"/>
+					<!--/Rotate-->
+				<Else/>
+					<Alpha>
+						<Fill/>
+						<Text sizeFactor="100%"/>
+					</Alpha>
+			</Conditional>
+		</Mask>
 		<SelectCase idAss="squareP">
 			<SelectedImage/>
 		</SelectCase>
-	</DrawTile>
+	</DrawBlockTile>
+	<DrawBoardTile>
+		<SelectVar name="Invisible">
+			<Case from="1" to="1">
+				<SelectAni aniName="TILEANI:REMOVING">
+					<Case from="0">
+						<Conditional>
+							<If><Char charName="BOMB"/></If>
+								<Mask aniId="Cracks" aniName="TILEANI:REMOVING"     _ign_aniFactor="10%" _ign_invert="true">
+									<Mask imgFile="squaremask.svg">
+										<Alpha>
+											<Fill/>
+										</Alpha>
+										<!--Rotate aniName="TILEANI:BOMB"-->
+										<Image imgFile="bomb.svg"/>
+										<!--/Rotate-->
+									</Mask>
+								</Mask>
+							<Else/>
+								<Rotate aniName="TILEANI:REMOVING"      _ign_invert="true" _ign_aniFactor="2%">
+											<!--Rotate aniName="TILEANI:BOMB"-->
+									<Mask imgFile="squaremask.svg">
+										<Alpha>
+											<Fill/>
+											<Text sizeFactor="100%"/>
+										</Alpha>
+									</Mask>
+											<!--/Rotate-->
+								</Rotate>
+						</Conditional>
+					</Case>
+				</SelectAni>
+			</Case>
+			<Default>
+				<Conditional>
+					<If><Char charName="BOMB"/></If>
+						<Mask aniId="Cracks" aniName="TILEANI:REMOVING"     _ign_aniFactor="10%" _ign_invert="true">
+							<Mask imgFile="squaremask.svg">
+								<Alpha>
+									<Fill/>
+								</Alpha>
+								<!--Rotate aniName="TILEANI:BOMB"-->
+								<Image imgFile="bomb.svg"/>
+								<!--/Rotate-->
+							</Mask>
+						</Mask>
+					<Else/>
+						<Rotate aniName="TILEANI:REMOVING"      _ign_invert="true" _ign_aniFactor="2%">
+									<!--Rotate aniName="TILEANI:BOMB"-->
+							<Mask imgFile="squaremask.svg">
+								<Alpha>
+									<Fill/>
+									<Text sizeFactor="100%"/>
+								</Alpha>
+							</Mask>
+									<!--/Rotate-->
+						</Rotate>
+				</Conditional>
+			</Default>
+		</SelectVar>
+	</DrawBoardTile>
 </Theme>

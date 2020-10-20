@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019  Stefano Marsili, <stemars@gmx.ch>
+ * Copyright © 2019-2020  Stefano Marsili, <stemars@gmx.ch>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@
 
 #include "xmlrowpusherevent.h"
 
-//#include <stmm-games-xml/xmlcommonparser.h>
 #include <stmm-games-xml-game/xmlutile/xmlnewrowsparser.h>
 #include <stmm-games-xml-game/gamectx.h>
 #include <stmm-games-xml-base/xmlconditionalparser.h>

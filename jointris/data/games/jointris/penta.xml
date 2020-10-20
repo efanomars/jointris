@@ -15,6 +15,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see <http://www.gnu.org/licenses/>
 -->
+<!--
+ * File:   penta.xml
+-->
 <Game _ign_version="1" internalName="Penta" difficulty="200">
 	<Description>Five tiles and a bomb</Description>
 	<Author name="Stefano Marsili"  email="stemars@gmx.ch" website="https://efanomars.com"/>

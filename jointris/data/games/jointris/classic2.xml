@@ -15,6 +15,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see <http://www.gnu.org/licenses/>
 -->
+<!--
+ * File:   classic2.xml
+-->
 <Game _ign_version="1" internalName="Classic2" difficulty="100">
 	<Description>The classic tetris for two.</Description>
 	<Description>Try joining two long pieces.</Description>

@@ -15,6 +15,9 @@
  * You should have received a copy of the GNU General Public
  * License along with this program; if not, see <http://www.gnu.org/licenses/>
 -->
+<!--
+ * File:   classic300.xml
+-->
 <Game _ign_version="1" internalName="Classic300" difficulty="10">
 	<Description>The classic tetris game.</Description>
 	<Description>300 seconds to drop as many blocks as possible.</Description>

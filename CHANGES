@@ -1,3 +1,11 @@
+jointris (0.26) unstable; urgency=low
+
+  * Fix dates
+  * Add Phantom game
+  * Increase minor version
+
+ -- Stefano Marsili <efanomars@gmx.ch>  Mon, 19 Oct 2020 19:29:39 +0100
+
 jointris (0.25) unstable; urgency=low
 
   * Add touch support (using new PassthroughIf xml element)

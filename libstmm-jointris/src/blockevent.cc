@@ -548,7 +548,7 @@ bool BlockEvent::move(Direction::VALUE eDir, bool bHandleBomb, bool bDoMove
 							if (eAttackType == LevelBlock::QUERY_ATTACK_TYPE_FUSE_TO_ATTACKER) {
 								m_bCannotBeHarmed = true;
 								#ifndef NDEBUG
-								const bool bPositionFreed = 
+								const bool bPositionFreed =
 								#endif //NDEBUG
 								p0AttackedBlock->attack(*this, nBoardX, nBoardY, oBrick);
 								m_bCannotBeHarmed = false;
@@ -1033,7 +1033,7 @@ void BlockEvent::boardPreInsert(Direction::VALUE eDir, NRect oArea, const shared
 		if ((nDelY > 0) && !canMove(Direction::UP, oArea.m_nX, 0, oArea.m_nW, nDelY, 0, +1)) {
 			// Cannot move up: this means it is
 			// pushed down by some board cell
-			// if a bomb was involved, the board cell is already destroyed 
+			// if a bomb was involved, the board cell is already destroyed
 			// Let's see if the block can be pushed down
 			if (!canMove(Direction::DOWN)) {
 				// no, there's something in the way
@@ -1064,7 +1064,7 @@ void BlockEvent::boardPreInsert(Direction::VALUE eDir, NRect oArea, const shared
 			return; //----------------------------------------------------------
 		}
 		// check whether one of the bricks will not be covered by one of the tiles
-		// but it could be mutilated or even destroyed by bombs! 
+		// but it could be mutilated or even destroyed by bombs!
 		if (oLevel.blockIntersectsArea(*this, oArea.m_nX, nInsY, oArea.m_nW, 1)) {
 			// whatever will be put into the inserted area
 			// (even empty tiles) sort of kills the block
