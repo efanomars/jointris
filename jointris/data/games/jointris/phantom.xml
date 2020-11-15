@@ -18,7 +18,8 @@
 <!--
  * File:   phantom.xml
 -->
-<Game _ign_version="1" internalName="Phantom" difficulty="1000">
+<Game _ign_version="1" internalName="Phantom" difficulty="1000"
+		boardPainter="PAINTER:HIDEBOARD">
 	<Description>The classic tetris game with a</Description>
 	<Description>progressively invisible board.</Description>
 	<Description>Dropping fast is rewarded with points.</Description>
@@ -176,7 +177,8 @@
 					<LevelShowWidget interactive="false"/>
 					<BoxWidget vertical="false" vertical_1="true" _ign_switchable="true">
 						<PreviewWidget name="ThePreview" team="0" minTilesW="4" minTilesH="4"
-										refWFactor="0.2" refHFactor="0.2"/>
+										refWFactor="0.2" refHFactor="0.2"
+										painter="PAINTER:PREVIEW"/>
 						<VarWidget title="Score" team="0" variable="Points" refWFactor="45%" refHFactor="10%" valueDigits="7"/>
 						<VarWidget title="Lines" team="0" variable="Lines" refWFactor="0.25" refHFactor="0.1" valueDigits="4"/>
 						<VarWidget title="Drought" team="0" variable="Drought" refWFactor="0.20" refHFactor="0.1" valueDigits="2"/>

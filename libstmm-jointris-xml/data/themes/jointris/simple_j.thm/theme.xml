@@ -71,7 +71,12 @@
 			</Frame>
 		</LevelShowFactory>
 	</WidgetFactories>
-	<DrawBlockTile>
+
+	<TilePainters>
+
+	<ClonePainter name="PAINTER:PREVIEW" cloning="PAINTER:BLOCK"/>
+
+	<Painter name="PAINTER:BLOCK" default="true">
 		<!--Next/-->
 		<Mask imgFile="squaremask.svg">
 			<Conditional>
@@ -92,8 +97,36 @@
 		<SelectCase idAss="squareP">
 			<SelectedImage/>
 		</SelectCase>
-	</DrawBlockTile>
-	<DrawBoardTile>
+	</Painter>
+
+	<Painter name="PAINTER:BOARD">
+		<Conditional>
+			<If><Char charName="BOMB"/></If>
+				<Mask aniId="Cracks" aniName="TILEANI:REMOVING"     _ign_aniFactor="10%" _ign_invert="true">
+					<Mask imgFile="squaremask.svg">
+						<Alpha>
+							<Fill/>
+						</Alpha>
+						<!--Rotate aniName="TILEANI:BOMB"-->
+						<Image imgFile="bomb.svg"/>
+						<!--/Rotate-->
+					</Mask>
+				</Mask>
+			<Else/>
+				<Rotate aniName="TILEANI:REMOVING"      _ign_invert="true" _ign_aniFactor="2%">
+							<!--Rotate aniName="TILEANI:BOMB"-->
+					<Mask imgFile="squaremask.svg">
+						<Alpha>
+							<Fill/>
+							<Text sizeFactor="100%"/>
+						</Alpha>
+					</Mask>
+							<!--/Rotate-->
+				</Rotate>
+		</Conditional>
+	</Painter>
+
+	<Painter name="PAINTER:HIDEBOARD">
 		<SelectVar name="Invisible">
 			<Case from="1" to="1">
 				<SelectAni aniName="TILEANI:REMOVING">
@@ -152,5 +185,7 @@
 				</Conditional>
 			</Default>
 		</SelectVar>
-	</DrawBoardTile>
+	</Painter>
+
+	</TilePainters>
 </Theme>
