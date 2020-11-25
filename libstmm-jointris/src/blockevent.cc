@@ -48,7 +48,7 @@ const std::string BlockEvent::s_sPlayerOptionClockwiseRotation = "ClockwiseRotat
 static constexpr const int32_t s_nZObjectZBlock = 2000;
 static constexpr const int32_t s_nZObjectZBombExplosion = 10000;
 
-static constexpr const int32_t s_nExplosionDurationMilllisec = 1000;
+static constexpr const int32_t s_nExplosionDurationMillisec = 1000;
 
 static constexpr const int32_t s_nKeysBufferSize = 10;
 
@@ -656,7 +656,7 @@ bool BlockEvent::move(Direction::VALUE eDir, bool bHandleBomb, bool bDoMove
 								const int32_t nPlayer = getPlayer();
 								shared_ptr<ExplosionAnimation> refBoardExplosion;
 								ExplosionAnimation::Init oExplosionInit;
-								oExplosionInit.m_fDuration = s_nExplosionDurationMilllisec;
+								oExplosionInit.m_fDuration = s_nExplosionDurationMillisec;
 								oExplosionInit.m_oPos = {0.0 + nBoardX + nDeltaExploX, 0.0 + nBoardY + nDeltaExploY};
 								oExplosionInit.m_oSize = {1.0, 1.0};
 								oExplosionInit.m_nZ = s_nZObjectZBombExplosion;
