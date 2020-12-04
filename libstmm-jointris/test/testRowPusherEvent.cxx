@@ -584,7 +584,7 @@ TEST_CASE_METHOD(STFX<RowPusherCase2GameFixture>, "Case2_PushOneRowTwoGaps")
 		REQUIRE( oEntry.m_nLevel== 0 );
 		REQUIRE( oEntry.m_nMsg == 77);
 		//REQUIRE( oEntry.m_nValue == 1 );
-		REQUIRE( oEntry.m_nTriggeringEventAdr == reinterpret_cast<int64_t>(m_p0RowPusherEvent) );
+		REQUIRE( oEntry.m_nTriggeringEventAddr == reinterpret_cast<int64_t>(m_p0RowPusherEvent) );
 	}
 }
 
@@ -624,7 +624,7 @@ TEST_CASE_METHOD(STFX<RowPusherRemoverCase3GameFixture>, "Case3_PushOnlyWhenTopR
 		REQUIRE( oEntry.m_nLevel== 0 );
 		REQUIRE( oEntry.m_nMsg == 33);
 		REQUIRE( oEntry.m_nValue == 2 ); // The two top rows have to be removed
-		REQUIRE( oEntry.m_nTriggeringEventAdr == reinterpret_cast<int64_t>(m_p0RowRemoverEvent) );
+		REQUIRE( oEntry.m_nTriggeringEventAddr == reinterpret_cast<int64_t>(m_p0RowRemoverEvent) );
 	}
 	LogEvent::msgLog().reset();
 
@@ -656,7 +656,7 @@ TEST_CASE_METHOD(STFX<RowPusherRemoverCase3GameFixture>, "Case3_PushOnlyWhenTopR
 		REQUIRE( oEntry.m_nLevel== 0 );
 		REQUIRE( oEntry.m_nMsg == 77);
 		//REQUIRE( oEntry.m_nValue == 0 );
-		REQUIRE( oEntry.m_nTriggeringEventAdr == reinterpret_cast<int64_t>(m_p0RowPusherEvent) );
+		REQUIRE( oEntry.m_nTriggeringEventAddr == reinterpret_cast<int64_t>(m_p0RowPusherEvent) );
 	}
 }
 

@@ -598,7 +598,7 @@ TEST_CASE_METHOD(STFX<BlockEventCase1GameFixture>, "Case1_Down")
 		REQUIRE( oEntry.m_nLevel== 0 );
 		REQUIRE( oEntry.m_nMsg == 44);
 		//REQUIRE( oEntry.m_nValue == 0 );
-		REQUIRE( oEntry.m_nTriggeringEventAdr == reinterpret_cast<int64_t>(m_p0BlockEvent) );
+		REQUIRE( oEntry.m_nTriggeringEventAddr == reinterpret_cast<int64_t>(m_p0BlockEvent) );
 	}
 	{
 		const LogEvent::MsgLog::Entry& oEntry = LogEvent::msgLog().last();
@@ -608,7 +608,7 @@ TEST_CASE_METHOD(STFX<BlockEventCase1GameFixture>, "Case1_Down")
 		REQUIRE( oEntry.m_nLevel== 0 );
 		REQUIRE( oEntry.m_nMsg == 55);
 		//REQUIRE( oEntry.m_nValue == 0 );
-		REQUIRE( oEntry.m_nTriggeringEventAdr == reinterpret_cast<int64_t>(m_p0BlockEvent) );
+		REQUIRE( oEntry.m_nTriggeringEventAddr == reinterpret_cast<int64_t>(m_p0BlockEvent) );
 	}
 }
 TEST_CASE_METHOD(STFX<BlockEventCase1GameFixture>, "Case1_Right")
@@ -752,7 +752,7 @@ TEST_CASE_METHOD(STFX<BlockEventCase2GameFixture>, "Case2_BombDown")
 		REQUIRE( oEntry.m_nLevel== 0 );
 		REQUIRE( oEntry.m_nMsg == 44);
 		//REQUIRE( oEntry.m_nValue == 0 );
-		REQUIRE( oEntry.m_nTriggeringEventAdr == reinterpret_cast<int64_t>(m_p0BlockEvent) );
+		REQUIRE( oEntry.m_nTriggeringEventAddr == reinterpret_cast<int64_t>(m_p0BlockEvent) );
 	}
 	{
 		const LogEvent::MsgLog::Entry& oEntry = LogEvent::msgLog().last();
@@ -762,7 +762,7 @@ TEST_CASE_METHOD(STFX<BlockEventCase2GameFixture>, "Case2_BombDown")
 		REQUIRE( oEntry.m_nLevel== 0 );
 		REQUIRE( oEntry.m_nMsg == 55);
 		//REQUIRE( oEntry.m_nValue == 0 );
-		REQUIRE( oEntry.m_nTriggeringEventAdr == reinterpret_cast<int64_t>(m_p0BlockEvent) );
+		REQUIRE( oEntry.m_nTriggeringEventAddr == reinterpret_cast<int64_t>(m_p0BlockEvent) );
 	}
 	// 2 explosion animations should have been created
 	REQUIRE( oLevelView.getCalled<FakeLevelView::AnimationCreate>().size() == 1);

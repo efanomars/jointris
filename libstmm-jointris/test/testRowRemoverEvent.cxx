@@ -670,7 +670,7 @@ TEST_CASE_METHOD(STFX<RowRemoverBlockCase3GameFixture>, "Case3_PushDown")
 		REQUIRE( oEntry.m_nLevel== 0 );
 		REQUIRE( oEntry.m_nMsg == 33);
 		REQUIRE( oEntry.m_nValue == 1 ); // one row was removed
-		REQUIRE( oEntry.m_nTriggeringEventAdr == reinterpret_cast<int64_t>(m_p0RowRemoverEvent) );
+		REQUIRE( oEntry.m_nTriggeringEventAddr == reinterpret_cast<int64_t>(m_p0RowRemoverEvent) );
 	}
 	m_refGame->handleTimer(); // RowRemover is finished
 	REQUIRE( m_refGame->gameElapsed() == 5 );
@@ -682,7 +682,7 @@ TEST_CASE_METHOD(STFX<RowRemoverBlockCase3GameFixture>, "Case3_PushDown")
 		REQUIRE( oEntry.m_nGameTick == 4 );
 		REQUIRE( oEntry.m_nLevel== 0 );
 		REQUIRE( oEntry.m_nMsg == 44);
-		REQUIRE( oEntry.m_nTriggeringEventAdr == reinterpret_cast<int64_t>(m_p0RowRemoverEvent) );
+		REQUIRE( oEntry.m_nTriggeringEventAddr == reinterpret_cast<int64_t>(m_p0RowRemoverEvent) );
 	}
 }
 
@@ -762,7 +762,7 @@ TEST_CASE_METHOD(STFX<RowRemoverBlockCase4GameFixture>, "Case4_PushDownFreeze")
 		REQUIRE( oEntry.m_nLevel== 0 );
 		REQUIRE( oEntry.m_nMsg == 77);
 		//REQUIRE( oEntry.m_nValue == 0 );
-		REQUIRE( oEntry.m_nTriggeringEventAdr == reinterpret_cast<int64_t>(m_p0BlockEvent) );
+		REQUIRE( oEntry.m_nTriggeringEventAddr == reinterpret_cast<int64_t>(m_p0BlockEvent) );
 		if (nFreezedBack == 0) {
 			nRemovedBack = 1;
 		}
@@ -775,7 +775,7 @@ TEST_CASE_METHOD(STFX<RowRemoverBlockCase4GameFixture>, "Case4_PushDownFreeze")
 		REQUIRE( oEntry.m_nLevel== 0 );
 		REQUIRE( oEntry.m_nMsg == 33);
 		//REQUIRE( oEntry.m_nValue == 0 );
-		REQUIRE( oEntry.m_nTriggeringEventAdr == reinterpret_cast<int64_t>(m_p0RowRemoverEvent) );
+		REQUIRE( oEntry.m_nTriggeringEventAddr == reinterpret_cast<int64_t>(m_p0RowRemoverEvent) );
 	}
 }
 TEST_CASE_METHOD(STFX<RowRemoverBlockCase5GameFixture>, "Case5_PushDownIntoGap")
@@ -842,7 +842,7 @@ TEST_CASE_METHOD(STFX<RowRemoverBlockCase5GameFixture>, "Case5_PushDownIntoGap")
 		REQUIRE( oEntry.m_nLevel== 0 );
 		REQUIRE( oEntry.m_nMsg == 33);
 		//REQUIRE( oEntry.m_nValue == 0 );
-		REQUIRE( oEntry.m_nTriggeringEventAdr == reinterpret_cast<int64_t>(m_p0RowRemoverEvent) );
+		REQUIRE( oEntry.m_nTriggeringEventAddr == reinterpret_cast<int64_t>(m_p0RowRemoverEvent) );
 	}
 }
 
@@ -912,7 +912,7 @@ TEST_CASE_METHOD(STFX<RowRemoverBlockCase6GameFixture>, "Case6_PushDownMutilatin
 		REQUIRE( oEntry.m_nLevel== 0 );
 		REQUIRE( oEntry.m_nMsg == 33);
 		//REQUIRE( oEntry.m_nValue == 0 );
-		REQUIRE( oEntry.m_nTriggeringEventAdr == reinterpret_cast<int64_t>(m_p0RowRemoverEvent) );
+		REQUIRE( oEntry.m_nTriggeringEventAddr == reinterpret_cast<int64_t>(m_p0RowRemoverEvent) );
 	}
 }
 
@@ -989,7 +989,7 @@ TEST_CASE_METHOD(STFX<RowRemoverBlockCase7GameFixture>, "Case7_PushDownOnBombsMu
 		REQUIRE( oEntry.m_nLevel== 0 );
 		REQUIRE( oEntry.m_nMsg == 33);
 		//REQUIRE( oEntry.m_nValue == 0 );
-		REQUIRE( oEntry.m_nTriggeringEventAdr == reinterpret_cast<int64_t>(m_p0RowRemoverEvent) );
+		REQUIRE( oEntry.m_nTriggeringEventAddr == reinterpret_cast<int64_t>(m_p0RowRemoverEvent) );
 	}
 }
 

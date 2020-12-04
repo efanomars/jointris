@@ -150,6 +150,10 @@ protected:
 		oPairGame = m_refXmlGameLoader->getNewGame("Permutis", *this, m_refPrefs, oNamed, shared_ptr<stmg::Highscore>{});
 		refGame = std::move(oPairGame.first);
 		REQUIRE(refGame);
+
+		oPairGame = m_refXmlGameLoader->getNewGame("Phantom", *this, m_refPrefs, oNamed, shared_ptr<stmg::Highscore>{});
+		refGame = std::move(oPairGame.first);
+		REQUIRE(refGame);
 	}
 	void testTwoTeams()
 	{
