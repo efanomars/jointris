@@ -27,6 +27,7 @@
 		<Var name="Points" owner="TEAM" initial="0"/>
 		<Var name="Lines" owner="TEAM" initial="0"/>
 		<Var name="Level" owner="TEAM" initial="1"/>
+		<Var name="Drought" owner="TEAM" initial="0"/>
 
 		<Var name="BlockDuration0" owner="GAME" initial="0" addTime="true" timeBase="MILLISEC"/>
 		<Var name="BlockDuration1" owner="GAME" initial="0" addTime="true" timeBase="MILLISEC"/>
@@ -217,9 +218,10 @@
 						</BoxWidget>
 					</BoxWidget>
 					<BoxWidget vertical_0="false" vertical_1="true">
-						<VarWidget title="Points" team="0" mate="" variable="Points" refWFactor="40%" refHFactor="20%" valueDigits="7"/>
-						<VarWidget title="Lines" team="0" mate="" variable="Lines" refWFactor="30%" refHFactor="20%" valueDigits="4"/>
-						<VarWidget title="Level" team="0" mate="" variable="Level" refWFactor="30%" refHFactor="20%" valueDigits="2"/>
+						<VarWidget title="Points" team="0" mate="" variable="Points" refWFactor="40%" refHFactor="15%" valueDigits="7"/>
+						<VarWidget title="Lines" team="0" mate="" variable="Lines" refWFactor="25%" refHFactor="15%" valueDigits="4"/>
+						<VarWidget title="Drought" team="0" variable="Drought" refWFactor="20%" refHFactor="15%" valueDigits="2"/>
+						<VarWidget title="Level" team="0" mate="" variable="Level" refWFactor="20%" refHFactor="15%" valueDigits="2"/>
 					</BoxWidget>
 				</BoxWidget>
 			</ActionsBoxWidget>
@@ -398,48 +400,12 @@
 			<AttrIf preview="ThePreview0">
 				<Option name="Feeder::Preview" ownerType="GAME" value="true"/>
 			</AttrIf>
-			<_Ign_Bunch prob="100" joined="true">
-				<BlockEvent block="Threei" initPos="-2">
-					<AttrIf initPos="-10">
-						<Mates team="0" from="2"/>
-					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
-					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
-					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
-						<ExistIf>
-							<Option name="SoundEnabled" team="" value="true"/>
-						</ExistIf>
-					</Listener>
-					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
-						<ExistIf>
-							<Option name="SoundEnabled" team="" value="true"/>
-						</ExistIf>
-					</Listener>
-				</BlockEvent>
-				<BlockEvent block="Threei" initPos="+3">
-					<AttrIf initPos="-5">
-						<Mates team="0" from="2"/>
-					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
-					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
-					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
-						<ExistIf>
-							<Option name="SoundEnabled" team="" value="true"/>
-						</ExistIf>
-					</Listener>
-					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
-						<ExistIf>
-							<Option name="SoundEnabled" team="" value="true"/>
-						</ExistIf>
-					</Listener>
-				</BlockEvent>
-			</_Ign_Bunch>
 			<Bunch prob="15" >
 				<BlockEvent block="Classic:L" initPos="0">
 					<AttrIf initPos="-4">
 						<Mates team="0" from="2"/>
 					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-DROUGHT" msgName="INC"/>
 					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
 					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
 						<ExistIf>
@@ -458,7 +424,7 @@
 					<AttrIf initPos="-4">
 						<Mates team="0" from="2"/>
 					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-DROUGHT" msgName="INC"/>
 					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
 					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
 						<ExistIf>
@@ -477,7 +443,7 @@
 					<AttrIf initPos="-4">
 						<Mates team="0" from="2"/>
 					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-DROUGHT" msgName="RESET"/>
 					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
 					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
 						<ExistIf>
@@ -496,7 +462,7 @@
 					<AttrIf initPos="-4">
 						<Mates team="0" from="2"/>
 					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-DROUGHT" msgName="INC"/>
 					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
 					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
 						<ExistIf>
@@ -515,7 +481,7 @@
 					<AttrIf initPos="-4">
 						<Mates team="0" from="2"/>
 					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-DROUGHT" msgName="INC"/>
 					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
 					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
 						<ExistIf>
@@ -534,7 +500,7 @@
 					<AttrIf initPos="-4">
 						<Mates team="0" from="2"/>
 					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-DROUGHT" msgName="INC"/>
 					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
 					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
 						<ExistIf>
@@ -553,7 +519,7 @@
 					<AttrIf initPos="-4">
 						<Mates team="0" from="2"/>
 					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-DROUGHT" msgName="INC"/>
 					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION0" msgName="RESET"/>
 					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
 						<ExistIf>
@@ -606,48 +572,12 @@
 			<AttrIf preview="ThePreview1">
 				<Option name="Feeder::Preview" ownerType="GAME" value="true"/>
 			</AttrIf>
-			<_Ign_Bunch prob="100" joined="true">
-				<BlockEvent block="Threei" initPos="-2">
-					<AttrIf initPos="+5">
-						<Mates team="0" from="2"/>
-					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
-					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
-					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
-						<ExistIf>
-							<Option name="SoundEnabled" team="" value="true"/>
-						</ExistIf>
-					</Listener>
-					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
-						<ExistIf>
-							<Option name="SoundEnabled" team="" value="true"/>
-						</ExistIf>
-					</Listener>
-				</BlockEvent>
-				<BlockEvent block="Threei" initPos="+3">
-					<AttrIf initPos="+10">
-						<Mates team="0" from="2"/>
-					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
-					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
-					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
-						<ExistIf>
-							<Option name="SoundEnabled" team="" value="true"/>
-						</ExistIf>
-					</Listener>
-					<Listener groupName="FUSED_WITH" event="EVID-SND-FUSED" msgName="PLAY_FREE">
-						<ExistIf>
-							<Option name="SoundEnabled" team="" value="true"/>
-						</ExistIf>
-					</Listener>
-				</BlockEvent>
-			</_Ign_Bunch>
 			<Bunch prob="15" >
 				<BlockEvent block="Classic:L" initPos="0">
 					<AttrIf initPos="+4">
 						<Mates team="0" from="2"/>
 					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-DROUGHT" msgName="INC"/>
 					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
 					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
 						<ExistIf>
@@ -666,7 +596,7 @@
 					<AttrIf initPos="+4">
 						<Mates team="0" from="2"/>
 					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-DROUGHT" msgName="INC"/>
 					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
 					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
 						<ExistIf>
@@ -685,7 +615,7 @@
 					<AttrIf initPos="+4">
 						<Mates team="0" from="2"/>
 					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-DROUGHT" msgName="RESET"/>
 					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
 					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
 						<ExistIf>
@@ -704,7 +634,7 @@
 					<AttrIf initPos="+4">
 						<Mates team="0" from="2"/>
 					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-DROUGHT" msgName="INC"/>
 					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
 					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
 						<ExistIf>
@@ -723,7 +653,7 @@
 					<AttrIf initPos="+4">
 						<Mates team="0" from="2"/>
 					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-DROUGHT" msgName="INC"/>
 					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
 					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
 						<ExistIf>
@@ -742,7 +672,7 @@
 					<AttrIf initPos="+4">
 						<Mates team="0" from="2"/>
 					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
+					<Listener groupName="COULD_PLACE" event="EVID-VAR-DROUGHT" msgName="INC"/>
 					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
 					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
 						<ExistIf>
@@ -761,7 +691,6 @@
 					<AttrIf initPos="+4">
 						<Mates team="0" from="2"/>
 					</AttrIf>
-					<Bomb><Char charName="BOMB"/></Bomb>
 					<Listener groupName="COULD_PLACE" event="EVID-VAR-BLCK-DURATION1" msgName="RESET"/>
 					<Listener groupName="FREEZED" event="EVID-SND-FREEZED" msgName="PLAY_FREE">
 						<ExistIf>
@@ -800,6 +729,9 @@
 			<!--Listener groupName="COMPARED" event="EVID-LOG-POINTS1" msg="9999"/-->
 		</CumulCmpEvent>
 		<!--LogEvent evId="EVID-LOG-POINTS1" tag="999"/-->
+
+		<VariableEvent evId="EVID-VAR-DROUGHT" name="Drought" team="0">
+		</VariableEvent>
 
 		<SoundEvent evId="EVID-SND-FREEZED" name="Freezed" listenerRealtive="true">
 			<ExistIf>
